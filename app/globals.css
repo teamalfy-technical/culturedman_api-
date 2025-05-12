@@ -1,0 +1,505 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: 0 0% 0%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 0%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 0%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 90%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: #ffffff;
+    /* --background: 0 0% 0%; */
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 30%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-playfair;
+  }
+  p,
+  span,
+  a,
+  button,
+  input,
+  textarea {
+    @apply font-sans;
+  }
+}
+
+/* Custom classes */
+.section-padding {
+  @apply py-12 md:py-16 lg:py-20;
+}
+
+.container-custom {
+  @apply container mx-auto px-4 md:px-6;
+}
+
+/* Logo */
+.logo{
+  /* margin-top:-5em; */
+}
+/* Hero background */
+.hero-bg {
+  background-color: #ffffff !important;
+  border-radius:12px !important;
+}
+
+/* Add this custom button style for the hero section */
+.hero-button-primary {
+  @apply bg-black text-white py-4 px-8 rounded-full flex items-center justify-between;
+}
+
+.hero-button-secondary {
+  @apply border border-white/30 text-white py-4 px-8 rounded-full uppercase text-sm font-medium hover:bg-white/10 transition-colors;
+}
+
+/* Custom animation for carousel */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+}
+
+.img-hover-zoom {
+  overflow: hidden;
+}
+
+.img-hover-zoom img {
+  transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.img-hover-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* Button animations */
+.btn-pulse {
+  position: relative;
+}
+
+.btn-pulse::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  animation: pulse 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+@keyframes pulse {
+  to {
+    box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+  }
+}
+
+/* Slider dots */
+.slider-dot {
+  @apply w-2 h-2 rounded-full bg-gray-300 transition-all duration-300;
+}
+
+.slider-dot.active {
+  @apply bg-black w-4;
+}
+
+/* Category overlay */
+.category-overlay {
+  @apply absolute bottom-0 left-0 right-0 bg-black/70 text-white text-center py-3 px-4;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+.ceremonial-suits-img{
+  border-radius:12px;
+}
+
+/* Fashion showcase grid */
+.fashion-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+  height: 600px;
+  overflow: hidden;
+}
+
+.fashion-grid-text {
+  background-color: #000;
+  color: #fff;
+  padding: 2rem;
+  height: 100%;
+}
+
+.fashion-grid-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0.5rem;
+  height: 100%;
+  overflow: hidden;
+}
+
+.fashion-grid-images-container {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Vertical scroll animation */
+@keyframes verticalScroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.vertical-scroll {
+  animation: verticalScroll 30s linear infinite;
+  height: 200%;
+}
+
+.vertical-scroll:hover {
+  animation-play-state: paused;
+}
+
+@media (max-width: 768px) {
+  .fashion-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .fashion-grid-images {
+    height: 400px;
+  }
+}
+
+/* Custom button styles */
+.btn-custom {
+  @apply bg-black text-white px-6 py-2 text-sm uppercase font-medium;
+  border-radius: 0;
+}
+
+.btn-custom-outline {
+  @apply border border-black text-black px-6 py-2 text-sm uppercase font-medium;
+  border-radius: 0;
+}
+
+.btn-custom:hover,
+.btn-custom-outline:hover {
+  @apply bg-black/90 text-white;
+}
+
+/* Hero section specific styles */
+.try-stylist-btn {
+  @apply bg-black text-white py-3 px-6 rounded-full uppercase text-sm font-medium flex items-center justify-between;
+  width: 100%;
+  max-width: 280px;
+  transition: all 0.3s ease;
+}
+
+.try-stylist-btn:hover {
+  @apply bg-black/90;
+}
+
+.arrow-line {
+  position: relative;
+  width: 24px;
+  height: 2px;
+  @apply bg-white;
+  margin-left: 12px;
+  transition: width 0.3s ease;
+}
+
+.arrow-line::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid white;
+  border-right: 2px solid white;
+  transform: rotate(45deg);
+}
+
+.try-stylist-btn:hover .arrow-line {
+  width: 32px;
+}
+
+.book-consultation-btn {
+  @apply border border-white/30 text-white py-3 px-2 rounded-full uppercase text-sm font-medium hover:bg-black;
+  width: 100%;
+  max-width: 280px;
+  transition: all 0.3s ease;
+}
+
+/* Flip Card Effect */
+.flip-card {
+  perspective: 1000px;
+  height: 500px;
+  width: 100%;
+  border-radius: 0.375rem !important;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  border-radius: 0.375rem !important;
+  -webkit-backface-visibility: hidden; 
+  backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; 
+  backface-visibility: hidden;
+  overflow: hidden;
+  transform: rotateY(180deg);
+}
+
+/* Vertical text for featured tag */
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Enhanced Mobile Responsiveness */
+@media (max-width: 640px) {
+  .try-stylist-btn,
+  .book-consultation-btn {
+    max-width: 100%;
+  }
+
+  .fashion-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .fashion-grid-text {
+    padding: 1.5rem;
+  }
+
+  .fashion-grid-images {
+    grid-template-columns: repeat(2, 1fr);
+    height: 400px;
+  }
+
+  .slider-dot {
+    @apply w-1.5 h-1.5;
+  }
+
+  .slider-dot.active {
+    @apply w-3;
+  }
+
+  .flip-card {
+    height: 400px;
+  }
+}
+
+/* Additional Mobile Responsiveness */
+@media (max-width: 480px) {
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-xl;
+  }
+
+  .container {
+    @apply px-4;
+  }
+
+  .fashion-grid-images {
+    grid-template-columns: 1fr;
+    height: 350px;
+  }
+
+  .flip-card {
+    height: 350px;
+  }
+}
+
+/* Add these styles to your existing globals.css file */
+
+/* Mobile slider styles */
+.mobile-slider {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-slider-inner {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.mobile-slider-item {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+/* Mobile navigation dots */
+.mobile-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin: 0 4px;
+  transition: all 0.3s ease;
+}
+
+.mobile-dot.active {
+  background-color: #000;
+  transform: scale(1.2);
+}
+
+/* Mobile navigation arrows */
+.mobile-nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.mobile-nav-arrow.prev {
+  left: 10px;
+}
+
+.mobile-nav-arrow.next {
+  right: 10px;
+}
+
+/* Ensure the flip card effect only works on desktop */
+@media (min-width: 768px) {
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+}
+
+@media (max-width: 767px) {
+  .flip-card-inner {
+    transform: none !important;
+  }
+}

@@ -1,0 +1,127 @@
+import { PageLayout } from "@/components/page-layout"
+import { MapPin, Phone, Mail} from "lucide-react"
+import { GoogleMap } from "@/components/google-map"
+
+export default function ContactPage() {
+  return (
+    <PageLayout>
+      <div className="container mx-auto px-4 py-8">
+        {/* Main heading */}
+        <h1 className="text-3xl md:text-4xl text-black font-bold text-center mb-8">Contact Us</h1>
+
+        {/* Description paragraph */}
+        <div className="max-w-4xl mx-auto text-center mb-12">
+          <p className="text-gray-700">
+            We Value Your Interest And Involvement In The Cultured Man Community. Whether You Have Questions, Need
+            Support, Or Want To Get More Involved, We're Here To Help. Below Are The Ways You Can Reach Out To Us
+            Directly Or Stay Connected Through Our Updates.
+          </p>
+        </div>
+
+        {/* Contact info cards */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8 mb-12 mx-8">
+          <div className="flex justify-center md:col-span-1">
+            <h2 className="text-2xl text-black text-center sm:text-left font-bold">
+              Get In
+              <br />
+              Touch
+            </h2>
+          </div>
+          <a href="#" className="group">
+            <div className="bg-black text-white p-4 py-6 rounded-2xl shadow-md flex items-center md:col-span-1 justify-center group-hover:bg-neutral-800">
+              <MapPin className="h-8 w-8 mr-4" />
+              <span className="text-sm">The Cultured Man</span>
+            </div>
+          </a>
+          <a href="tel:0533078542" className="group">
+            <div className="bg-black text-white p-4 py-6 rounded-2xl shadow-md flex items-center justify-center md:col-span-1 group-hover:bg-neutral-800">
+              <Phone className="h-8 w-8 mr-4" />
+              <span className="text-sm">+233 533078542</span>
+            </div>
+          </a>
+          <a href="mailto:info-theculturedman@gmail.com" className="group">
+            <div className="bg-black text-white p-4 py-6 rounded-2xl shadow-md flex items-center justify-center md:col-span-1 group-hover:bg-neutral-800">
+              <Mail className="h-8 w-8 mr-4" />
+              <span className="text-sm">info.theculturedman@gmail.com</span>
+            </div>
+          </a>  
+        </div>
+
+        {/* Contact form and map */}
+        <div className="bg-white rounded-lg shadow-md p-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Contact form */}
+            <div>
+              <form className="space-y-4">
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Your Name"
+                    className="w-full p-4 bg-gray-100 border-none rounded-md"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    placeholder="Your Email"
+                    className="w-full p-4 bg-gray-100 border-none rounded-md"
+                  />
+                </div>
+                <div>
+                  <textarea
+                    placeholder="Your Message"
+                    rows={5}
+                    className="w-full p-4 bg-gray-100 border-none rounded-md"
+                  ></textarea>
+                </div>
+                <div className="flex items-center justify-center text-center">
+                <button
+                  type="submit"
+                  className="bg-black group text-white w-80 py-3 px-6 rounded-full flex items-center justify-center text-center"
+                >
+                  <span className="mr-2">SEND</span>
+                  <span className="arrow-line"></span>
+                </button>
+                {/* <button className="try-stylist-btn group py-8">
+                <span>TRY OUR AI STYLIST</span>
+                <span className="arrow-line"></span>
+              </button> */}
+                </div>
+                
+              </form>
+            </div>
+
+            {/* Google Maps embed */}
+            <GoogleMap height="100%" className="min-h-[400px]" />
+          </div>
+        </div>
+
+        {/* Newsletter section */}
+        <div className="relative rounded-lg overflow-hidden mb-12">
+          <div className="absolute inset-0 bg-black/60 z-10"></div>
+          <div
+            className="w-full h-[300px] bg-cover bg-center"
+            style={{
+              backgroundImage:
+                "url('https://images.unsplash.com/photo-1617137968427-85924c800a22?q=80&w=1974&auto=format&fit=crop')",
+            }}
+          ></div>
+          <div className="relative z-20 p-8 md:p-12 text-white text-center">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">Subscribe To Our News Letter</h2>
+            <p className="mb-6">
+              Become a part of the cultured man of the near future, leave us your email and we will be in touch..
+            </p>
+            <div className="flex flex-col md:flex-row max-w-xl mx-auto">
+              <input
+                type="email"
+                placeholder="Email"
+                className="flex-grow p-4 bg-gray-800 text-white border-none rounded-l-md mb-2 md:mb-0"
+              />
+              <button className="bg-white text-black px-8 py-4 rounded-r-md">Subscribe</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </PageLayout>
+  )
+}
