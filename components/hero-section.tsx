@@ -25,7 +25,7 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="hero-bg min-h-screen bg-white mt-[90px] lg:mx-8 rounded-[1vw] px-3 relative overflow-visible">
+    <section className="hero-bg min-h-screen bg-white mt-[100px] lg:mx-8 rounded-[1vw] px-3 relative overflow-visible">
       {/* Cultured Man Logo */}
       <div className="flex justify-center relative">
         <img className="flex justify-center logo -mt-8 overflow-visible z-10 bg-white rounded-[1vw] px-10" width="200px" height="100px" src="/images/cultured-man-logo.png" alt="cultured-man logo" />

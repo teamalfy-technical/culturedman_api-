@@ -104,25 +104,23 @@ export function FashionShowcase() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-white p-6 md:col-span-1"
+            className="text-black p-6 md:col-span-1 my-auto"
           >
             <div className="mb-4">
-              <span className="text-xs uppercase bg-white text-black px-2 py-1">Fashion</span>
+              <span className="text-xs uppercase bg-black rounded-full text-white px-2 py-1">Fashion</span>
             </div>
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">
+            <h3 className="text-2xl md:text-3xl mb-3 text-black font-bold">
               Dive Into A World
               <br />
               Of Endless Fashion
               <br />
               Possibilities
             </h3>
-            <p className="text-sm text-white/70 mt-4">
-              Elevate Your Wardrobe With Our Perfect Craft. Discover Your Signature Style Through Our Bespoke Tailoring
-              Services. We Are Here To Serve You.
+            <p className="text-md text-black mt-4">
+              Elevate your wardrobe with our fashion finds. Discover your signature style.
             </p>
-            <p className="text-sm text-white/70 mt-4">
-              From The Finest Fabrics To The Most Exquisite Details, Our Bespoke Suits Are Designed To Make You Look And
-              Feel Your Best. Book An Appointment Today.
+            <p className="text-md text-black mt-4">
+              From neckties and bowties to cufflinks and socks, each piece is designed to complement our suits while reflecting the rich cultural heritage of Africa.
             </p>
           </motion.div>
 

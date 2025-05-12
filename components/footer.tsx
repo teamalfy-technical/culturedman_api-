@@ -55,7 +55,7 @@ export function Footer() {
             <Link href="/pages/contact" className="text-sm hover:underline">
               Contact Us
             </Link>
-            <Link href="/pages/privacy" className="text-sm hover:underline">
+            <Link href="/pages/privacy" className="text-sm hover:underline text-white-300">
               Privacy Policy
             </Link>
           </div>

@@ -1,35 +1,39 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { motion } from "framer-motion"
 
 // Sample data for categories
 const categories = [
   {
-    id: 1,
-    title: "Corporate",
-    image: "https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?q=80&w=1780&auto=format&fit=crop",
+    id: "corporate",
+    title: "Cooperate",
+    image: "/images/corporate/corporate-bg.png",
     alt: "Man in burgundy suit",
+    path: "/pages/categories/corporate",
   },
   {
-    id: 2,
+    id: "bridal",
     title: "Bridal/Nuptials",
-    image: "https://images.unsplash.com/photo-1596436889106-be35e843f974?q=80&w=1770&auto=format&fit=crop",
+    image: "/images/bridal/bridal-bg.png",
     alt: "Man in white tuxedo",
+    path: "/pages/categories/bridal",
   },
   {
-    id: 3,
+    id: "red-carpet",
     title: "Red Carpet Events",
-    image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1771&auto=format&fit=crop",
+    image: "/images/red-carpet/red-carpet-bg.png",
     alt: "Man in black tuxedo with sunglasses",
+    path: "/pages/categories/red-carpet",
   },
 ]
 
 export function Categories() {
   return (
-    <section className="py-8 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="space-y-4 md:space-y-6">
+    <section className="bg-white px-5">
+      <div className="w-full">
+        <div className="flex flex-col">
           {categories.map((category, index) => (
             <motion.div
               key={category.id}
@@ -37,20 +41,22 @@ export function Categories() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
               viewport={{ once: true }}
-              className="relative overflow-hidden rounded-md"
+              className="relative w-full h-[500px]"
             >
-              <div className="img-hover-zoom">
-                <Image
-                  src={category.image || "/placeholder.svg"}
-                  alt={category.alt}
-                  width={1200}
-                  height={600}
-                  className="w-full h-[250px] md:h-[400px] object-cover"
-                />
-              </div>
-              <div className="category-overlay">
-                <h3 className="text-xl font-bold mb-1">{category.title}</h3>
-                <button className="text-white hover:underline text-sm">Discover More</button>
+              <Image
+                src={category.image || "/placeholder.svg"}
+                alt={category.alt}
+                fill
+                className="object-cover"
+                priority={index === 0}
+              />
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <div className="bg-[rgba(0,0,0,0.7)] text-white px-12 py-4 mb-4">
+                  <h3 className="text-2xl font-bold text-center">{category.title}</h3>
+                </div>
+                <Link href={category.path} className="text-white hover:underline text-sm">
+                  Discover More
+                </Link>
               </div>
             </motion.div>
           ))}
