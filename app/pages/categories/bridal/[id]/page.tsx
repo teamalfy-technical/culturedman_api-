@@ -30,11 +30,11 @@ const bridalCollection = {
         alt: "Man in white tuxedo - front view",
       },
       {
-        src: "/images/bridal/bridal-1-lnt1.jpg",
+        src: "/images/bridal/bridal-1.png",
         alt: "Man in white tuxedo - side view",
       },
       {
-        src: "/images/bridal/bridal-1-lnt2.jpg",
+        src: "/images/bridal/bridal-1.png",
         alt: "Man in white tuxedo - back view",
       },
     ],
@@ -58,15 +58,15 @@ const bridalCollection = {
     ],
     images: [
       {
-        src: "/images/bridal-2.jpg",
+        src: "/images/bridal/bridal-2.png",
         alt: "Group of men in black tuxedos - front view",
       },
       {
-        src: "/images/bridal-2-alt1.jpg",
+        src: "/images/bridal/bridal-2.png",
         alt: "Group of men in black tuxedos - side view",
       },
       {
-        src: "/images/bridal-2-alt2.jpg",
+        src: "/images/bridal/bridal-2.png",
         alt: "Group of men in black tuxedos - back view",
       },
     ],
@@ -90,15 +90,15 @@ const bridalCollection = {
     ],
     images: [
       {
-        src: "/images/bridal-3.jpg",
+        src: "/images/bridal/bridal-3.png",
         alt: "Man in white dinner jacket - front view",
       },
       {
-        src: "/images/bridal-3-alt1.jpg",
+        src: "/images/bridal/bridal-3.png",
         alt: "Man in white dinner jacket - side view",
       },
       {
-        src: "/images/bridal-3-alt2.jpg",
+        src: "/images/bridal/bridal-3.png",
         alt: "Man in white dinner jacket - back view",
       },
     ],
@@ -122,15 +122,15 @@ const bridalCollection = {
     ],
     images: [
       {
-        src: "/images/bridal-4.jpg",
+        src: "/images/bridal/bridal-4.png",
         alt: "Group of groomsmen in matching suits - front view",
       },
       {
-        src: "/images/bridal-4-alt1.jpg",
+        src: "/images/bridal/bridal-4.png",
         alt: "Group of groomsmen in matching suits - side view",
       },
       {
-        src: "/images/bridal-4-alt2.jpg",
+        src: "/images/bridal/bridal-4.png",
         alt: "Group of groomsmen in matching suits - back view",
       },
     ],
@@ -153,15 +153,15 @@ const bridalCollection = {
     ],
     images: [
       {
-        src: "/images/bridal-5.jpg",
+        src: "/images/bridal/bridal-5.png",
         alt: "Man in white jacket at wedding - front view",
       },
       {
-        src: "/images/bridal-5-alt1.jpg",
+        src: "/images/bridal/bridal-5.png",
         alt: "Man in white jacket at wedding - side view",
       },
       {
-        src: "/images/bridal-5-alt2.jpg",
+        src: "/images/bridal/bridal-5.png",
         alt: "Man in white jacket at wedding - back view",
       },
     ],
@@ -185,15 +185,15 @@ const bridalCollection = {
     ],
     images: [
       {
-        src: "/images/bridal-6.jpg",
+        src: "/images/bridal/bridal-6.png",
         alt: "Wedding party in formal wear - front view",
       },
       {
-        src: "/images/bridal-6-alt1.jpg",
+        src: "/images/bridal/bridal-6.png",
         alt: "Wedding party in formal wear - side view",
       },
       {
-        src: "/images/bridal-6-alt2.jpg",
+        src: "/images/bridal/bridal-6.png",
         alt: "Wedding party in formal wear - back view",
       },
     ],

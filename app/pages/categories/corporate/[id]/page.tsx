@@ -26,15 +26,15 @@ const corporateCollection = {
     ],
     images: [
       {
-        src: "/images/corporate-1.jpg",
+        src: "/images/corporate/single-breasted/single-breasted-1.png",
         alt: "Man in burgundy suit - front view",
       },
       {
-        src: "/images/corporate-1-alt1.jpg",
+        src: "/images/corporate/single-breasted/single-breasted-1.png",
         alt: "Man in burgundy suit - side view",
       },
       {
-        src: "/images/corporate-1-alt2.jpg",
+        src: "/images/corporate/single-breasted/single-breasted-1.png",
         alt: "Man in burgundy suit - back view",
       },
     ],
@@ -58,15 +58,15 @@ const corporateCollection = {
     ],
     images: [
       {
-        src: "/images/corporate-2.jpg",
+        src: "/images/corporate/double-breasted/double-breasted-1.png",
         alt: "Man in navy blue suit - front view",
       },
       {
-        src: "/images/corporate-2-alt1.jpg",
+        src: "/images/corporate/double-breasted/double-breasted-1.png",
         alt: "Man in navy blue suit - side view",
       },
       {
-        src: "/images/corporate-2-alt2.jpg",
+        src: "/images/corporate/double-breasted/double-breasted-1.png",
         alt: "Man in navy blue suit - back view",
       },
     ],
@@ -91,15 +91,15 @@ const corporateCollection = {
     ],
     images: [
       {
-        src: "/images/corporate-3.jpg",
+        src: "/images/corporate/overcoat/overcoat-1.png",
         alt: "Man in gray pinstripe suit - front view",
       },
       {
-        src: "/images/corporate-3-alt1.jpg",
+        src: "/images/corporate/overcoat/overcoat-1.png",
         alt: "Man in gray pinstripe suit - side view",
       },
       {
-        src: "/images/corporate-3-alt2.jpg",
+        src: "/images/corporate/overcoat/overcoat-1.png",
         alt: "Man in gray pinstripe suit - back view",
       },
     ],
@@ -123,15 +123,15 @@ const corporateCollection = {
     ],
     images: [
       {
-        src: "/images/corporate-4.jpg",
+        src: "/images/corporate/safari-suit/safari-suit-1.png",
         alt: "Man in black suit with tie - front view",
       },
       {
-        src: "/images/corporate-4-alt1.jpg",
+        src: "/images/corporate/safari-suit/safari-suit-1.png",
         alt: "Man in black suit with tie - side view",
       },
       {
-        src: "/images/corporate-4-alt2.jpg",
+        src: "/images/corporate/safari-suit/safari-suit-1.png",
         alt: "Man in black suit with tie - back view",
       },
     ],
