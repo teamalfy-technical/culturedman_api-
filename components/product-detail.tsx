@@ -48,7 +48,7 @@ export function ProductDetail({ title, colour, size, fit, details, images, backL
               <button
                 key={index}
                 onClick={() => setSelectedImage(index)}
-                className={`relative w-24 h-24 border ${selectedImage === index ? "border-black" : "border-gray-200"}`}
+                className={`relative rounded-md w-24 h-24 border ${selectedImage === index ? "border-black-2" : "border-gray-200"}`}
               >
                 <Image src={image.src || "/placeholder.svg"} alt={image.alt} fill className="object-cover" />
               </button>
@@ -57,7 +57,7 @@ export function ProductDetail({ title, colour, size, fit, details, images, backL
         </div>
 
         {/* Product Information */}
-        <div className="flex flex-col">
+        <div className="flex flex-col text-black">
           <h1 className="text-3xl font-bold mb-8">{title}</h1>
 
           <div className="grid grid-cols-3 gap-4 mb-8">
@@ -83,7 +83,7 @@ export function ProductDetail({ title, colour, size, fit, details, images, backL
 
           <Link
             href="/pages/schedule-appointment"
-            className="border border-black text-black py-3 px-6 rounded-full text-center uppercase tracking-wide hover:bg-black hover:text-white transition-colors"
+            className="border border-black text-black w-50 py-3 px-6 rounded-full text-center uppercase tracking-wide hover:bg-black hover:text-white transition-colors"
           >
             BOOK CONSULTATION APPOINTMENT
           </Link>

@@ -82,7 +82,7 @@ export function HeroSection() {
                   <span className="arrow-line"></span>
                 </button>
               </Link>
-              <Link href="/pages/book-appointment">
+              <Link href="/pages/schedule-appointment">
                 <button className="book-consultation-btn">BOOK CONSULTATION APPOINTMENT</button>
               </Link>      
             </div>

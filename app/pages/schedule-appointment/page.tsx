@@ -80,11 +80,11 @@ export default function ScheduleAppointmentPage() {
     <PageLayout>
       <div className="container mx-auto px-4 py-8">
         {/* Main heading */}
-        <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">Schedule An Appointment</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-center text-black mb-8">Schedule An Appointment</h1>
 
         {/* Description paragraph */}
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <p className="text-gray-700">
+          <p className="text-gray-700 md:px-12 px-2">
             At The Cultured Man, We Understand That True Luxury Is In The Details. Whether You're Looking For A
             Perfectly Tailored Suit, Style Consultation, Or Personalized Shopping Experience, Our Appointment-Based
             Services Ensure You Receive The Undivided Attention And Expertise You Deserve.

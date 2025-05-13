@@ -26,15 +26,15 @@ const redCarpetCollection = {
     ],
     images: [
       {
-        src: "/images/red-carpet-1.jpg",
+        src: "/images/red-carpet/red-carpet-1.png",
         alt: "Man in black tuxedo with sunglasses - front view",
       },
       {
-        src: "/images/red-carpet-1-alt1.jpg",
+        src: "/images/red-carpet/red-carpet-1.png",
         alt: "Man in black tuxedo with sunglasses - side view",
       },
       {
-        src: "/images/red-carpet-1-alt2.jpg",
+        src: "/images/red-carpet/red-carpet-1.png",
         alt: "Man in black tuxedo with sunglasses - back view",
       },
     ],
@@ -57,15 +57,15 @@ const redCarpetCollection = {
     ],
     images: [
       {
-        src: "/images/red-carpet-2.jpg",
+        src: "/images/red-carpet/red-carpet-2.png",
         alt: "Man in velvet dinner jacket - front view",
       },
       {
-        src: "/images/red-carpet-2-alt1.jpg",
+        src: "/images/red-carpet/red-carpet-2.png",
         alt: "Man in velvet dinner jacket - side view",
       },
       {
-        src: "/images/red-carpet-2-alt2.jpg",
+        src: "/images/red-carpet/red-carpet-2.png",
         alt: "Man in velvet dinner jacket - back view",
       },
     ],
@@ -88,15 +88,15 @@ const redCarpetCollection = {
     ],
     images: [
       {
-        src: "/images/red-carpet-3.jpg",
+        src: "/images/red-carpet/red-carpet-3.png",
         alt: "Man in white dinner jacket - front view",
       },
       {
-        src: "/images/red-carpet-3-alt1.jpg",
+        src: "/images/red-carpet/red-carpet-3.png",
         alt: "Man in white dinner jacket - side view",
       },
       {
-        src: "/images/red-carpet-3-alt2.jpg",
+        src: "/images/red-carpet/red-carpet-3.png",
         alt: "Man in white dinner jacket - back view",
       },
     ],
@@ -119,15 +119,15 @@ const redCarpetCollection = {
     ],
     images: [
       {
-        src: "/images/red-carpet-4.jpg",
+        src: "/images/red-carpet/red-carpet-4.png",
         alt: "Man in patterned suit - front view",
       },
       {
-        src: "/images/red-carpet-4-alt1.jpg",
+        src: "/images/red-carpet/red-carpet-4.png",
         alt: "Man in patterned suit - side view",
       },
       {
-        src: "/images/red-carpet-4-alt2.jpg",
+        src: "/images/red-carpet/red-carpet-4.png",
         alt: "Man in patterned suit - back view",
       },
     ],
@@ -150,15 +150,15 @@ const redCarpetCollection = {
     ],
     images: [
       {
-        src: "/images/red-carpet-5.jpg",
+        src: "/images/red-carpet/red-carpet-5.png",
         alt: "Man in gold suit - front view",
       },
       {
-        src: "/images/red-carpet-5-alt1.jpg",
+        src: "/images/red-carpet/red-carpet-5.png",
         alt: "Man in gold suit - side view",
       },
       {
-        src: "/images/red-carpet-5-alt2.jpg",
+        src: "/images/red-carpet/red-carpet-5.png",
         alt: "Man in gold suit - back view",
       },
     ],
@@ -181,15 +181,15 @@ const redCarpetCollection = {
     ],
     images: [
       {
-        src: "/images/red-carpet-6.jpg",
+        src: "/images/red-carpet/red-carpet-6.png",
         alt: "Man in silver tuxedo - front view",
       },
       {
-        src: "/images/red-carpet-6-alt1.jpg",
+        src: "/images/red-carpet/red-carpet-6.png",
         alt: "Man in silver tuxedo - side view",
       },
       {
-        src: "/images/red-carpet-6-alt2.jpg",
+        src: "/images/red-carpet/red-carpet-6.png",
         alt: "Man in silver tuxedo - back view",
       },
     ],

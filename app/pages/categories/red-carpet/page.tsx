@@ -7,32 +7,32 @@ import { ArrowLeft } from "lucide-react"
 const redCarpetCollection = [
   {
     id: "red-carpet-1",
-    image: "/images/red-carpet-1.jpg",
+    image: "/images/red-carpet/red-carpet-1.png",
     alt: "Man in black tuxedo with sunglasses",
   },
   {
     id: "red-carpet-2",
-    image: "/images/red-carpet-2.jpg",
+    image: "/images/red-carpet/red-carpet-2.png",
     alt: "Man in velvet dinner jacket",
   },
   {
     id: "red-carpet-3",
-    image: "/images/red-carpet-3.jpg",
+    image: "/images/red-carpet/red-carpet-3.png",
     alt: "Man in white dinner jacket",
   },
   {
     id: "red-carpet-4",
-    image: "/images/red-carpet-4.jpg",
+    image: "/images/red-carpet/red-carpet-4.png",
     alt: "Man in patterned suit",
   },
   {
     id: "red-carpet-5",
-    image: "/images/red-carpet-5.jpg",
+    image: "/images/red-carpet/red-carpet-5.png",
     alt: "Man in gold suit",
   },
   {
     id: "red-carpet-6",
-    image: "/images/red-carpet-6.jpg",
+    image: "/images/red-carpet/red-carpet-6.png",
     alt: "Man in silver tuxedo",
   },
 ]
@@ -45,7 +45,7 @@ export default function RedCarpetPage() {
           <Link href="/" className="flex items-center text-black">
             <ArrowLeft className="h-5 w-5" />
           </Link>
-          <h1 className="text-3xl font-bold text-center flex-1">Red Carpet Events</h1>
+          <h1 className="text-3xl font-bold text-center flex-1 text-black">Red Carpet Events</h1>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
