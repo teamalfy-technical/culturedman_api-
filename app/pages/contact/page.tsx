@@ -1,8 +1,28 @@
+"use client"
+
+import type React from "react"
+
+import { useState } from "react"
 import { PageLayout } from "@/components/page-layout"
-import { MapPin, Phone, Mail} from "lucide-react"
+import { MapPin, Phone, Mail, Loader2 } from "lucide-react"
 import { GoogleMap } from "@/components/google-map"
 
 export default function ContactPage() {
+    const [isContactSubmitting, setIsContactSubmitting] = useState(false)
+    const [isNewsletterSubmitting, setIsNewsletterSubmitting] = useState(false)
+  
+    const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+      setIsContactSubmitting(true)
+      // The form will still submit normally, we're just adding the loading state
+      // FormSubmit will handle the redirect
+    }
+  
+    const handleNewsletterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+      setIsNewsletterSubmitting(true)
+      // The form will still submit normally, we're just adding the loading state
+      // FormSubmit will handle the redirect
+    }
+  
   return (
     <PageLayout>
       <div className="container mx-auto px-4 py-8">
@@ -44,7 +64,7 @@ export default function ContactPage() {
               <Mail className="h-8 w-8 mr-4" />
               <span className="text-sm">info.theculturedman@gmail.com</span>
             </div>
-          </a>  
+          </a>
         </div>
 
         {/* Contact form and map */}
@@ -52,42 +72,68 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Contact form */}
             <div>
-              <form className="space-y-4">
+              {/* <form action="https://formsubmit.co/2cd8fe56d03bf1dc7c4460dfcde9a017" method="POST" className="space-y-4 text-black"> */}
+                <form
+                action="https://formsubmit.co/2cd8fe56d03bf1dc7c4460dfcde9a017"
+                method="POST"
+                className="space-y-4"
+                onSubmit={handleContactSubmit}
+                >
+                {/* FormSubmit configuration */}
+                <input type="hidden" className="text-black" name="_subject" value="New Culturedman Contact Form Submission" />
+                {/* <input type="hidden" name="_next" value="/page/thank-you" /> */}
+                <input type="hidden" className="text-black" name="_captcha" value="false" />
+                <input type="text" className="text-black" name="_honey" style={{ display: "none" }} />
+
                 <div>
                   <input
                     type="text"
+                    name="name"
                     placeholder="Your Name"
                     className="w-full p-4 bg-gray-100 border-none rounded-md"
+                    required
+                    disabled={isContactSubmitting}
                   />
                 </div>
                 <div>
                   <input
                     type="email"
+                    name="email"
                     placeholder="Your Email"
                     className="w-full p-4 bg-gray-100 border-none rounded-md"
+                    required
+                    disabled={isContactSubmitting}
                   />
                 </div>
                 <div>
                   <textarea
+                    name="message"
                     placeholder="Your Message"
                     rows={5}
                     className="w-full p-4 bg-gray-100 border-none rounded-md"
+                    required
+                    disabled={isContactSubmitting}
                   ></textarea>
                 </div>
                 <div className="flex items-center justify-center text-center">
-                <button
-                  type="submit"
-                  className="bg-black group text-white w-80 py-3 px-6 rounded-full flex items-center justify-center text-center"
-                >
-                  <span className="mr-2">SEND</span>
-                  <span className="arrow-line"></span>
-                </button>
-                {/* <button className="try-stylist-btn group py-8">
-                <span>TRY OUR AI STYLIST</span>
-                <span className="arrow-line"></span>
-              </button> */}
+                  <button
+                    type="submit"
+                    className="bg-black group text-white w-80 py-3 px-6 rounded-full flex items-center justify-center text-center"
+                    disabled={isContactSubmitting}
+                  >
+                     {isContactSubmitting ? (
+                      <>
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                        <span>SENDING...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="mr-2">SEND</span>
+                        <span className="arrow-line"></span>
+                      </>
+                    )}
+                  </button>
                 </div>
-                
               </form>
             </div>
 
@@ -111,17 +157,32 @@ export default function ContactPage() {
             <p className="mb-6">
               Become a part of the cultured man of the near future, leave us your email and we will be in touch..
             </p>
-            <div className="flex flex-col md:flex-row max-w-xl mx-auto">
+            <form
+              action="https://formsubmit.co/2cd8fe56d03bf1dc7c4460dfcde9a017"
+              method="POST"
+              className="flex flex-col md:flex-row max-w-xl mx-auto"
+            >
+              {/* FormSubmit configuration */}
+              <input type="hidden" name="_subject" value="New Culturedman Newsletter Subscription" />
+              {/* <input type="hidden" name="_next" value="/page/thank-you" /> */}
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="text" name="_honey" style={{ display: "none" }} />
+
               <input
                 type="email"
+                name="email"
                 placeholder="Email"
                 className="flex-grow p-4 bg-gray-800 text-white border-none rounded-l-md mb-2 md:mb-0"
+                required
               />
-              <button className="bg-white text-black px-8 py-4 rounded-r-md">Subscribe</button>
-            </div>
+              <button type="submit" className="bg-white text-black px-8 py-4 rounded-r-md">
+                Subscribe
+              </button>
+            </form>
           </div>
         </div>
       </div>
     </PageLayout>
   )
 }
+

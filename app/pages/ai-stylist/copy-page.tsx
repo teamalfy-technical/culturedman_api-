@@ -2,16 +2,14 @@
 
 import type React from "react"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { PageLayout } from "@/components/page-layout"
-import { ChevronDown, Loader2 } from "lucide-react"
-import Link from "next/link"
-import { motion } from "framer-motion"
+import { ChevronDown, ArrowRight, Loader2 } from "lucide-react"
 import { submitStylistForm } from "@/app/actions/stylist-actions"
+import { StylistRecommendations } from "@/components/stylist-recommendations"
 import type { StylistResult } from "@/app/actions/stylist-actions"
 
 export default function AiStylistPage() {
-  // Initialize state with empty values
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -26,12 +24,6 @@ export default function AiStylistPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formError, setFormError] = useState<string | null>(null)
   const [result, setResult] = useState<StylistResult | null>(null)
-  const [isMounted, setIsMounted] = useState(false)
-
-  // Add this useEffect to prevent hydration errors
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -66,7 +58,6 @@ export default function AiStylistPage() {
     setIsSubmitting(true)
 
     try {
-      // Use a try-catch to handle potential errors from the server action
       const result = await submitStylistForm(formData)
       setResult(result)
 
@@ -81,17 +72,6 @@ export default function AiStylistPage() {
     }
   }
 
-  // Return early if not mounted to prevent hydration errors
-  if (!isMounted) {
-    return (
-      <PageLayout>
-        <div className="container mx-auto px-4 py-8 min-h-screen flex items-center justify-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-black"></div>
-        </div>
-      </PageLayout>
-    )
-  }
-
   return (
     <PageLayout>
       <div className="container mx-auto px-4 py-8">
@@ -99,26 +79,13 @@ export default function AiStylistPage() {
         <h1 className="text-3xl md:text-4xl text-black font-bold text-center mb-8">Your Personal AI Stylist</h1>
 
         {/* Description paragraph */}
-        <div className="max-w-4xl mx-auto text-center mb-8">
+        <div className="max-w-4xl mx-auto text-center mb-16">
           <p className="text-gray-700">
             At The Cultured Man, We Believe That True Style Goes Beyond Just Wearing A Well-Tailored Suit—It's About
             Expressing Confidence, Sophistication, And Individuality. To Help You Achieve The Perfect Look, We Offer An
             AI-Powered Style Advisor And Expert Styling Services Tailored To Your Needs.
           </p>
         </div>
-
-        {/* Quick link to recommendations */}
-        {/* <div className="max-w-4xl mx-auto text-center mb-16">
-          <Link href="/pages/ai-recommendations">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-black text-white py-2 px-6 rounded-full"
-            >
-              View AI Recommendations
-            </motion.button>
-          </Link>
-        </div> */}
 
         {!result?.success ? (
           /* Stylist Form */
@@ -274,6 +241,7 @@ export default function AiStylistPage() {
                   ) : (
                     <>
                       <span className="mr-2">GET RECOMMENDATIONS</span>
+                      {/* <ArrowRight className="h-4 w-4" /> */}
                       <span className="arrow-line"></span>
                     </>
                   )}
@@ -283,18 +251,10 @@ export default function AiStylistPage() {
           </div>
         ) : (
           /* Recommendations */
-          <div className="text-center">
-            <p className="mb-8">{result.message}</p>
-            <Link href="/pages/ai-recommendation">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-black text-white py-3 px-8 rounded-full"
-              >
-                View Recommendations
-              </motion.button>
-            </Link>
-          </div>
+          <StylistRecommendations
+            recommendations={result.recommendations || []}
+            message={result.message || "Here are your personalized recommendations."}
+          />
         )}
       </div>
     </PageLayout>

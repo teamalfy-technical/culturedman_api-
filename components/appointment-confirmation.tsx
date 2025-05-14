@@ -18,8 +18,8 @@ export function AppointmentConfirmation({ message }: AppointmentConfirmationProp
       <div className="flex justify-center mb-6">
         <CheckCircle className="h-16 w-16 text-green-600" />
       </div>
-      <h2 className="text-2xl font-bold mb-4">Appointment Scheduled</h2>
-      <p className="text-lg">{message}</p>
+      <h2 className="text-2xl text-black font-bold mb-4">Appointment Scheduled</h2>
+      <p className="text-lg text-black">{message}</p>
       <div className="mt-8">
         <p className="text-gray-600">
           If you need to reschedule or cancel your appointment, please contact us at least 24 hours in advance.
