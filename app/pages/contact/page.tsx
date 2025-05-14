@@ -39,30 +39,31 @@ export default function ContactPage() {
         </div>
 
         {/* Contact info cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8 mb-12 mx-8">
-          <div className="flex justify-center md:col-span-1">
-            <h2 className="text-2xl text-black text-center sm:text-left font-bold">
+      
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-12 max-w-6xl mx-auto px-4 overflow-hidden">
+          <div className="flex justify-center sm:justify-start sm:items-center">
+            <h2 className="text-2xl text-black text-center font-bold">
               Get In
               <br />
               Touch
             </h2>
           </div>
           <a href="#" className="group">
-            <div className="bg-black text-white p-4 py-6 rounded-2xl shadow-md flex items-center md:col-span-1 justify-center group-hover:bg-neutral-800">
-              <MapPin className="h-8 w-8 mr-4" />
+            <div className="bg-black text-white p-4 py-6 rounded-2xl shadow-md flex items-center justify-center group-hover:bg-neutral-800 h-full">
+              <MapPin className="h-8 w-8 mr-4 flex-shrink-0" />
               <span className="text-sm">The Cultured Man</span>
             </div>
           </a>
           <a href="tel:0533078542" className="group">
-            <div className="bg-black text-white p-4 py-6 rounded-2xl shadow-md flex items-center justify-center md:col-span-1 group-hover:bg-neutral-800">
-              <Phone className="h-8 w-8 mr-4" />
+            <div className="bg-black text-white p-4 py-6 rounded-2xl shadow-md flex items-center justify-center group-hover:bg-neutral-800 h-full">
+              <Phone className="h-8 w-8 mr-4 flex-shrink-0" />
               <span className="text-sm">+233 533078542</span>
             </div>
           </a>
-          <a href="mailto:info-theculturedman@gmail.com" className="group">
-            <div className="bg-black text-white p-4 py-6 rounded-2xl shadow-md flex items-center justify-center md:col-span-1 group-hover:bg-neutral-800">
-              <Mail className="h-8 w-8 mr-4" />
-              <span className="text-sm">info.theculturedman@gmail.com</span>
+          <a href="mailto:info-theculturedman@gmail.com" className="group sm:col-span-2 lg:col-span-1">
+            <div className="bg-black text-white p-4 py-6 rounded-2xl shadow-md flex items-center justify-center group-hover:bg-neutral-800 h-full">
+              <Mail className="h-8 w-8 mr-4 flex-shrink-0" />
+              <span className="text-sm truncate">info.theculturedman@gmail.com</span>
             </div>
           </a>
         </div>
@@ -76,7 +77,7 @@ export default function ContactPage() {
                 <form
                 action="https://formsubmit.co/2cd8fe56d03bf1dc7c4460dfcde9a017"
                 method="POST"
-                className="space-y-4"
+                className="space-y-4 text-black"
                 onSubmit={handleContactSubmit}
                 >
                 {/* FormSubmit configuration */}
@@ -90,7 +91,7 @@ export default function ContactPage() {
                     type="text"
                     name="name"
                     placeholder="Your Name"
-                    className="w-full p-4 bg-gray-100 border-none rounded-md"
+                    className="w-full p-4 text-black bg-gray-100 border-none rounded-md"
                     required
                     disabled={isContactSubmitting}
                   />
@@ -100,7 +101,7 @@ export default function ContactPage() {
                     type="email"
                     name="email"
                     placeholder="Your Email"
-                    className="w-full p-4 bg-gray-100 border-none rounded-md"
+                    className="w-full p-4 text-black bg-gray-100 border-none rounded-md"
                     required
                     disabled={isContactSubmitting}
                   />
@@ -110,7 +111,7 @@ export default function ContactPage() {
                     name="message"
                     placeholder="Your Message"
                     rows={5}
-                    className="w-full p-4 bg-gray-100 border-none rounded-md"
+                    className="w-full p-4 text-black bg-gray-100 border-none rounded-md"
                     required
                     disabled={isContactSubmitting}
                   ></textarea>
@@ -146,14 +147,14 @@ export default function ContactPage() {
         <div className="relative rounded-lg overflow-hidden mb-12">
           <div className="absolute inset-0 bg-black/60 z-10"></div>
           <div
-            className="w-full h-[300px] bg-cover bg-center"
+            className="w-full h-[400px] bg-cover bg-center pt-10 bg-fixed"
             style={{
               backgroundImage:
-                "url('https://images.unsplash.com/photo-1617137968427-85924c800a22?q=80&w=1974&auto=format&fit=crop')",
+                "url('/images/contact-bg.png')",
             }}
-          ></div>
-          <div className="relative z-20 p-8 md:p-12 text-white text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Subscribe To Our News Letter</h2>
+          >
+            <div className="relative z-20 p-8 my-auto md:p-12 text-white text-center">
+            <h2 className="text-2xl md:text-3xl font-bold my-4">Subscribe To Our News Letter</h2>
             <p className="mb-6">
               Become a part of the cultured man of the near future, leave us your email and we will be in touch..
             </p>
@@ -179,6 +180,7 @@ export default function ContactPage() {
                 Subscribe
               </button>
             </form>
+          </div>
           </div>
         </div>
       </div>

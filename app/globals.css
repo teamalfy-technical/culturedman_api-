@@ -67,7 +67,7 @@
   }
 }
 
-@layer base {
+/* @layer base {
   * {
     @apply border-border;
   }
@@ -89,6 +89,31 @@
   input,
   textarea {
     @apply font-sans;
+  }
+} */
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-times;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-times;
+  }
+  p,
+  span,
+  a,
+  button,
+  input,
+  textarea {
+    @apply font-times;
   }
 }
 
@@ -433,7 +458,19 @@ html {
   }
 }
 
-/* Add these styles to your existing globals.css file */
+/* Contact info-cards */
+.md\:grid-template-columns {
+  grid-template-columns: 0.8fr 1fr 1fr 1.2fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .grid-cols-1 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
 
 /* Mobile slider styles */
 .mobile-slider {

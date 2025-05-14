@@ -22,6 +22,7 @@ const config = {
       fontFamily: {
         sans: ["var(--font-inter)"],
         playfair: ["var(--font-playfair)"],
+        times: ["Times New Roman", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",

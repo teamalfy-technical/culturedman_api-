@@ -1,20 +1,10 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Playfair_Display } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 
-// Import Inter font for body text
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-})
-
-// Import Playfair Display for headings
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-})
+// No need to import Google fonts since we're using Times New Roman
+// which is a system font
 
 export const metadata: Metadata = {
   title: "Bespoke Tailoring | Redefining Elegance",
@@ -28,8 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* Apply both font variables to the body */}
-      <body className={`${inter.variable} ${playfair.variable} font-sans`}>
+      <body className="font-serif">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           {children}
         </ThemeProvider>
