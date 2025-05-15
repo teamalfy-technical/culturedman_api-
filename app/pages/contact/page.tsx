@@ -8,21 +8,21 @@ import { MapPin, Phone, Mail, Loader2 } from "lucide-react"
 import { GoogleMap } from "@/components/google-map"
 
 export default function ContactPage() {
-    const [isContactSubmitting, setIsContactSubmitting] = useState(false)
-    const [isNewsletterSubmitting, setIsNewsletterSubmitting] = useState(false)
-  
-    const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-      setIsContactSubmitting(true)
-      // The form will still submit normally, we're just adding the loading state
-      // FormSubmit will handle the redirect
-    }
-  
-    const handleNewsletterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-      setIsNewsletterSubmitting(true)
-      // The form will still submit normally, we're just adding the loading state
-      // FormSubmit will handle the redirect
-    }
-  
+  const [isContactSubmitting, setIsContactSubmitting] = useState(false)
+  const [isNewsletterSubmitting, setIsNewsletterSubmitting] = useState(false)
+
+  const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // Don't prevent default - let the form submit naturally
+    setIsContactSubmitting(true)
+    // FormSubmit will handle the redirect
+  }
+
+  const handleNewsletterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // Don't prevent default - let the form submit naturally
+    setIsNewsletterSubmitting(true)
+    // FormSubmit will handle the redirect
+  }
+
   return (
     <PageLayout>
       <div className="container mx-auto px-4 py-8">
@@ -39,7 +39,6 @@ export default function ContactPage() {
         </div>
 
         {/* Contact info cards */}
-      
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-12 max-w-6xl mx-auto px-4 overflow-hidden">
           <div className="flex justify-center sm:justify-start sm:items-center">
             <h2 className="text-2xl text-black text-center font-bold">
@@ -73,18 +72,17 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Contact form */}
             <div>
-              {/* <form action="https://formsubmit.co/2cd8fe56d03bf1dc7c4460dfcde9a017" method="POST" className="space-y-4 text-black"> */}
-                <form
-                action="https://formsubmit.co/2cd8fe56d03bf1dc7c4460dfcde9a017"
+              <form
+                action="https://formsubmit.co/fredawumeyfafa@gmail.com"
                 method="POST"
                 className="space-y-4 text-black"
                 onSubmit={handleContactSubmit}
-                >
+              >
                 {/* FormSubmit configuration */}
-                <input type="hidden" className="text-black" name="_subject" value="New Culturedman Contact Form Submission" />
-                {/* <input type="hidden" name="_next" value="/page/thank-you" /> */}
-                <input type="hidden" className="text-black" name="_captcha" value="false" />
-                <input type="text" className="text-black" name="_honey" style={{ display: "none" }} />
+                <input type="hidden" name="_subject" value="New Culturedman Contact Form Submission" />
+                {/* <input type="hidden" name="_next" value="/pages/thank-you" /> */}
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="text" name="_honey" style={{ display: "none" }} />
 
                 <div>
                   <input
@@ -93,7 +91,7 @@ export default function ContactPage() {
                     placeholder="Your Name"
                     className="w-full p-4 text-black bg-gray-100 border-none rounded-md"
                     required
-                    disabled={isContactSubmitting}
+                    // disabled={isContactSubmitting}
                   />
                 </div>
                 <div>
@@ -103,7 +101,7 @@ export default function ContactPage() {
                     placeholder="Your Email"
                     className="w-full p-4 text-black bg-gray-100 border-none rounded-md"
                     required
-                    disabled={isContactSubmitting}
+                    // disabled={isContactSubmitting}
                   />
                 </div>
                 <div>
@@ -113,16 +111,17 @@ export default function ContactPage() {
                     rows={5}
                     className="w-full p-4 text-black bg-gray-100 border-none rounded-md"
                     required
-                    disabled={isContactSubmitting}
+                    // disabled={isContactSubmitting}
                   ></textarea>
                 </div>
                 <div className="flex items-center justify-center text-center">
                   <button
                     type="submit"
                     className="bg-black group text-white w-80 py-3 px-6 rounded-full flex items-center justify-center text-center"
+                    onClick={()=> isContactSubmitting}
                     disabled={isContactSubmitting}
                   >
-                     {isContactSubmitting ? (
+                    {isContactSubmitting ? (
                       <>
                         <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                         <span>SENDING...</span>
@@ -149,42 +148,47 @@ export default function ContactPage() {
           <div
             className="w-full h-[400px] bg-cover bg-center pt-10 bg-fixed"
             style={{
-              backgroundImage:
-                "url('/images/contact-bg.png')",
+              backgroundImage: "url('/images/contact-bg.png')",
             }}
           >
             <div className="relative z-20 p-8 my-auto md:p-12 text-white text-center">
-            <h2 className="text-2xl md:text-3xl font-bold my-4">Subscribe To Our News Letter</h2>
-            <p className="mb-6">
-              Become a part of the cultured man of the near future, leave us your email and we will be in touch..
-            </p>
-            <form
-              action="https://formsubmit.co/2cd8fe56d03bf1dc7c4460dfcde9a017"
-              method="POST"
-              className="flex flex-col md:flex-row max-w-xl mx-auto"
-            >
-              {/* FormSubmit configuration */}
-              <input type="hidden" name="_subject" value="New Culturedman Newsletter Subscription" />
-              {/* <input type="hidden" name="_next" value="/page/thank-you" /> */}
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="text" name="_honey" style={{ display: "none" }} />
+              <h2 className="text-2xl md:text-3xl font-bold my-4">Subscribe To Our News Letter</h2>
+              <p className="mb-6">
+                Become a part of the cultured man of the near future, leave us your email and we will be in touch..
+              </p>
+              <form
+                action="https://formsubmit.co/2cd8fe56d03bf1dc7c4460dfcde9a017"
+                method="POST"
+                className="flex flex-col md:flex-row max-w-xl mx-auto"
+                onSubmit={handleNewsletterSubmit}
+              >
+                {/* FormSubmit configuration */}
+                <input type="hidden" name="_subject" value="New Culturedman Newsletter Subscription" />
+                {/* <input type="hidden" name="_next" value="/pages/thank-you" /> */}
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="text" name="_honey" style={{ display: "none" }} />
 
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                className="flex-grow p-4 bg-gray-800 text-white border-none rounded-l-md mb-2 md:mb-0"
-                required
-              />
-              <button type="submit" className="bg-white text-black px-8 py-4 rounded-r-md">
-                Subscribe
-              </button>
-            </form>
-          </div>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  className="flex-grow p-4 bg-black text-white border-none rounded-l-md mb-2 md:mb-0"
+                  required
+                  onClick={()=> isNewsletterSubmitting}
+                  // disabled={isNewsletterSubmitting}
+                />
+                <button
+                  type="submit"
+                  className="bg-white text-black px-8 py-4 rounded-r-md flex items-center justify-center"
+                  disabled={isNewsletterSubmitting}
+                >
+                  {isNewsletterSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : "Subscribe"}
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </PageLayout>
   )
 }
-

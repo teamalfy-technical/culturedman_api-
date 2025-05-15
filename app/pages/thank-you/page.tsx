@@ -11,14 +11,14 @@ export default function ThankYouPage() {
             <CheckCircle className="h-16 w-16 text-green-600" />
           </div>
 
-          <h1 className="text-3xl md:text-4xl font-bold mb-6">Thank You!</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-6 text-black">Thank You!</h1>
 
-          <p className="text-lg mb-8">
+          <p className="text-lg mb-8 text-black">
             Your message has been received. We appreciate your interest and will get back to you shortly.
           </p>
 
           <Link
-            href="/page/contact"
+            href="/"
             className="bg-black text-white py-3 px-8 rounded-full inline-block hover:bg-neutral-800 transition-colors"
           >
             Return to Home
