@@ -139,9 +139,9 @@ export function FashionShowcase() {
   }, [])
 
   return (
-    <section className="py-16 bg-black m-2 rounded-md">
+    <section className="py-16 mx-8 bg-black m-2 rounded-[2vw]">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-white m-1 md:m-4 rounded-md my-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-white m-1 md:m-4 rounded-[1vw] my-auto">
           {/* Text content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

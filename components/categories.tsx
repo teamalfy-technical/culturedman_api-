@@ -66,7 +66,7 @@ export function Categories() {
   }, [])
 
   return (
-    <section className="bg-white px-5">
+    <section className="bg-white px-8">
       <div className="w-full">
         <div className="flex flex-col">
           {categories.map((category, index) => (
