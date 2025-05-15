@@ -39,57 +39,101 @@ const fashionImages = [
 ]
 
 export function FashionShowcase() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const scrollUpContainerRef = useRef<HTMLDivElement>(null)
+  const scrollDownContainerRef = useRef<HTMLDivElement>(null)
 
-  // Manual infinite scroll implementation
+  // Implement scrolling effects
   useEffect(() => {
-    const scrollContainer = scrollContainerRef.current
-    if (!scrollContainer) return
+    // Scroll Up Container (bottom to top)
+    const scrollUpContainer = scrollUpContainerRef.current
+    let scrollUpAnimationId: number
+    let scrollUpPosition = 0
+    const scrollUpSpeed = 0.5 // pixels per frame
 
-    let animationFrameId: number
-    let scrollPosition = 0
-    const scrollSpeed = 0.5 // pixels per frame
-    const containerHeight = scrollContainer.scrollHeight / 2
+    // Scroll Down Container (top to bottom)
+    const scrollDownContainer = scrollDownContainerRef.current
+    let scrollDownAnimationId: number
+    let scrollDownPosition = 0
+    const scrollDownSpeed = 0.5 // pixels per frame
 
-    const scroll = () => {
-      scrollPosition += scrollSpeed
+    if (!scrollUpContainer || !scrollDownContainer) return
 
-      // Reset when we've scrolled through half the content (since it's duplicated)
-      if (scrollPosition >= containerHeight) {
-        scrollPosition = 0
+    const containerHeight = scrollUpContainer.scrollHeight / 2
+
+    // Scroll up animation (bottom to top)
+    const scrollUp = () => {
+      scrollUpPosition += scrollUpSpeed
+
+      // Reset when we've scrolled through half the content
+      if (scrollUpPosition >= containerHeight) {
+        scrollUpPosition = 0
       }
 
-      if (scrollContainer) {
-        scrollContainer.scrollTop = scrollPosition
+      if (scrollUpContainer) {
+        scrollUpContainer.scrollTop = scrollUpPosition
       }
 
-      animationFrameId = requestAnimationFrame(scroll)
+      scrollUpAnimationId = requestAnimationFrame(scrollUp)
     }
 
-    // Start the animation
-    animationFrameId = requestAnimationFrame(scroll)
+    // Scroll down animation (top to bottom)
+    const scrollDown = () => {
+      scrollDownPosition += scrollDownSpeed
+
+      // Reset when we've scrolled through half the content
+      if (scrollDownPosition >= containerHeight) {
+        scrollDownPosition = 0
+      }
+
+      if (scrollDownContainer) {
+        // Invert the scroll direction
+        scrollDownContainer.scrollTop = containerHeight - scrollDownPosition
+      }
+
+      scrollDownAnimationId = requestAnimationFrame(scrollDown)
+    }
+
+    // Start animations
+    scrollUpAnimationId = requestAnimationFrame(scrollUp)
+    scrollDownAnimationId = requestAnimationFrame(scrollDown)
 
     // Pause on hover or touch
     const handlePause = () => {
-      cancelAnimationFrame(animationFrameId)
+      cancelAnimationFrame(scrollUpAnimationId)
+      cancelAnimationFrame(scrollDownAnimationId)
     }
 
     const handleResume = () => {
-      animationFrameId = requestAnimationFrame(scroll)
+      scrollUpAnimationId = requestAnimationFrame(scrollUp)
+      scrollDownAnimationId = requestAnimationFrame(scrollDown)
     }
 
-    scrollContainer.addEventListener("mouseenter", handlePause)
-    scrollContainer.addEventListener("mouseleave", handleResume)
-    scrollContainer.addEventListener("touchstart", handlePause)
-    scrollContainer.addEventListener("touchend", handleResume)
+    scrollUpContainer.addEventListener("mouseenter", handlePause)
+    scrollUpContainer.addEventListener("mouseleave", handleResume)
+    scrollUpContainer.addEventListener("touchstart", handlePause)
+    scrollUpContainer.addEventListener("touchend", handleResume)
+
+    scrollDownContainer.addEventListener("mouseenter", handlePause)
+    scrollDownContainer.addEventListener("mouseleave", handleResume)
+    scrollDownContainer.addEventListener("touchstart", handlePause)
+    scrollDownContainer.addEventListener("touchend", handleResume)
 
     return () => {
-      cancelAnimationFrame(animationFrameId)
-      if (scrollContainer) {
-        scrollContainer.removeEventListener("mouseenter", handlePause)
-        scrollContainer.removeEventListener("mouseleave", handleResume)
-        scrollContainer.removeEventListener("touchstart", handlePause)
-        scrollContainer.removeEventListener("touchend", handleResume)
+      cancelAnimationFrame(scrollUpAnimationId)
+      cancelAnimationFrame(scrollDownAnimationId)
+
+      if (scrollUpContainer) {
+        scrollUpContainer.removeEventListener("mouseenter", handlePause)
+        scrollUpContainer.removeEventListener("mouseleave", handleResume)
+        scrollUpContainer.removeEventListener("touchstart", handlePause)
+        scrollUpContainer.removeEventListener("touchend", handleResume)
+      }
+
+      if (scrollDownContainer) {
+        scrollDownContainer.removeEventListener("mouseenter", handlePause)
+        scrollDownContainer.removeEventListener("mouseleave", handleResume)
+        scrollDownContainer.removeEventListener("touchstart", handlePause)
+        scrollDownContainer.removeEventListener("touchend", handleResume)
       }
     }
   }, [])
@@ -97,7 +141,7 @@ export function FashionShowcase() {
   return (
     <section className="py-16 bg-black m-2 rounded-md">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-white m-1 md:m-4 rounded-md">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-white m-1 md:m-4 rounded-md my-auto">
           {/* Text content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -117,41 +161,77 @@ export function FashionShowcase() {
               Possibilities
             </h3>
             <p className="text-md text-black mt-4">
-              Elevate your wardrobe with our fashion finds. Discover your signature style.
+              Elevate Your Wardrobe With Our Perfect Craft. Discover Your Signature Style Through Our Bespoke Tailoring
+              Services. We Are Here To Serve You.
             </p>
             <p className="text-md text-black mt-4">
-              From neckties and bowties to cufflinks and socks, each piece is designed to complement our suits while reflecting the rich cultural heritage of Africa.
+              From The Finest Fabrics To The Most Exquisite Details, Our Bespoke Suits Are Designed To Make You Look And
+              Feel Your Best. Book An Appointment Today.
             </p>
           </motion.div>
 
-          {/* Image grid with vertical scroll */}
-          <div className="md:col-span-2 h-[500px] md:h-[600px] overflow-hidden" ref={scrollContainerRef}>
-            <div className="grid grid-cols-2 gap-2 h-auto">
-              {/* First set of images */}
-              {fashionImages.map((item) => (
-                <div key={item.id} className="overflow-hidden h-[200px]">
-                  <Image
-                    src={item.image || "/placeholder.svg"}
-                    alt={item.alt}
-                    width={400}
-                    height={300}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ))}
+          {/* Image grid with two different scroll directions */}
+          <div className="md:col-span-2 grid grid-cols-2 gap-2 h-[500px] md:h-[600px]">
+            {/* Left column - scrolling up */}
+            <div className="h-full overflow-hidden" ref={scrollUpContainerRef}>
+              <div className="grid grid-cols-1 gap-2 h-auto">
+                {/* First set of images */}
+                {fashionImages.map((item) => (
+                  <div key={item.id} className="overflow-hidden h-[200px]">
+                    <Image
+                      src={item.image || "/placeholder.svg"}
+                      alt={item.alt}
+                      width={400}
+                      height={300}
+                      className="w-full h-full rounded-md object-cover"
+                    />
+                  </div>
+                ))}
 
-              {/* Duplicate images for seamless scrolling */}
-              {fashionImages.map((item) => (
-                <div key={`dup-${item.id}`} className="overflow-hidden h-[200px]">
-                  <Image
-                    src={item.image || "/placeholder.svg"}
-                    alt={item.alt}
-                    width={400}
-                    height={300}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ))}
+                {/* Duplicate images for seamless scrolling */}
+                {fashionImages.map((item) => (
+                  <div key={`dup-${item.id}`} className="overflow-hidden h-[200px]">
+                    <Image
+                      src={item.image || "/placeholder.svg"}
+                      alt={item.alt}
+                      width={400}
+                      height={300}
+                      className="w-full h-full rounded-md object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right column - scrolling down */}
+            <div className="h-full overflow-hidden" ref={scrollDownContainerRef}>
+              <div className="grid grid-cols-1 gap-2 h-auto">
+                {/* First set of images */}
+                {fashionImages.map((item) => (
+                  <div key={`right-${item.id}`} className="overflow-hidden h-[200px]">
+                    <Image
+                      src={item.image || "/placeholder.svg"}
+                      alt={item.alt}
+                      width={400}
+                      height={300}
+                      className="w-full rounded-md h-full object-cover"
+                    />
+                  </div>
+                ))}
+
+                {/* Duplicate images for seamless scrolling */}
+                {fashionImages.map((item) => (
+                  <div key={`right-dup-${item.id}`} className="overflow-hidden h-[200px]">
+                    <Image
+                      src={item.image || "/placeholder.svg"}
+                      alt={item.alt}
+                      width={400}
+                      height={300}
+                      className="w-full rounded-md h-full object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
