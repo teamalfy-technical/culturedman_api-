@@ -4,38 +4,72 @@ import { useRef, useEffect } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 
-// Sample data for fashion showcase images
-const fashionImages = [
+// Sample data for fashion showcase images - first column (scrolling up)
+const fashionImagesColumn1 = [
   {
-    id: 1,
-    image: "https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?q=80&w=1974&auto=format&fit=crop",
-    alt: "Man in suit 1",
+    id: "col1-1",
+    image: "/images/showcase1.png",
+    alt: "Man in beige suit",
   },
   {
-    id: 2,
-    image: "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?q=80&w=1974&auto=format&fit=crop",
-    alt: "Man in suit 2",
+    id: "col1-2",
+    image: "/images/showcase2.png",
+    alt: "Man in navy blue suit",
   },
   {
-    id: 3,
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop",
-    alt: "Man in suit 3",
+    id: "col1-3",
+    image: "/images/showcase3.png",
+    alt: "Man in casual outfit",
   },
   {
-    id: 4,
-    image: "https://images.unsplash.com/photo-1621072156002-e2fccdc0b176?q=80&w=1974&auto=format&fit=crop",
-    alt: "Man in suit 4",
+    id: "col1-4",
+    image: "/images/showcase4.png",
+    alt: "Man in gray suit",
+  },
+  // {
+  //   id: "col1-5",
+  //   image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop",
+  //   alt: "Man in white shirt",
+  // },
+  // {
+  //   id: "col1-6",
+  //   image: "https://images.unsplash.com/photo-1617137968427-85924c800a22?q=80&w=1974&auto=format&fit=crop",
+  //   alt: "Man in beige suit with tie",
+  // },
+]
+
+// Sample data for fashion showcase images - second column (scrolling down)
+const fashionImagesColumn2 = [
+  {
+    id: "col2-1",
+    image: "/images/showcase5.png",
+    alt: "Man in black suit",
   },
   {
-    id: 5,
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop",
-    alt: "Man in suit 5",
+    id: "col2-2",
+    image: "/images/showcase6.png",
+    alt: "Man in casual blazer",
   },
   {
-    id: 6,
-    image: "https://images.unsplash.com/photo-1617137968427-85924c800a22?q=80&w=1974&auto=format&fit=crop",
-    alt: "Man in suit 6",
+    id: "col2-3",
+    image: "/images/showcase7.png",
+    alt: "Man in tuxedo",
   },
+  {
+    id: "col2-4",
+    image: "/images/showcase8.png",
+    alt: "Man in formal wear",
+  },
+//   {
+//     id: "col2-5",
+//     image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1974&auto=format&fit=crop",
+//     alt: "Man in business casual",
+//   },
+//   {
+//     id: "col2-6",
+//     image: "https://images.unsplash.com/photo-1496345875659-11f7dd282d1d?q=80&w=2070&auto=format&fit=crop",
+//     alt: "Man in stylish outfit",
+//   },
 ]
 
 export function FashionShowcase() {
@@ -175,28 +209,28 @@ export function FashionShowcase() {
             {/* Left column - scrolling up */}
             <div className="h-full overflow-hidden" ref={scrollUpContainerRef}>
               <div className="grid grid-cols-1 gap-2 h-auto">
-                {/* First set of images */}
-                {fashionImages.map((item) => (
-                  <div key={item.id} className="overflow-hidden h-[200px]">
+                {/* First set of images - Column 1 */}
+                {fashionImagesColumn1.map((item) => (
+                  <div key={item.id} className="overflow-hidden h-[400px]">
                     <Image
                       src={item.image || "/placeholder.svg"}
                       alt={item.alt}
-                      width={400}
-                      height={300}
-                      className="w-full h-full rounded-md object-cover"
+                      width={300}
+                      height={600}
+                      className="w-full h-full rounded-md object-contain"
                     />
                   </div>
                 ))}
 
-                {/* Duplicate images for seamless scrolling */}
-                {fashionImages.map((item) => (
-                  <div key={`dup-${item.id}`} className="overflow-hidden h-[200px]">
+                {/* Duplicate images for seamless scrolling - Column 1 */}
+                {fashionImagesColumn1.map((item) => (
+                  <div key={`dup-${item.id}`} className="overflow-hidden h-[400px]">
                     <Image
                       src={item.image || "/placeholder.svg"}
                       alt={item.alt}
-                      width={400}
-                      height={300}
-                      className="w-full h-full rounded-md object-cover"
+                      width={300}
+                      height={600}
+                      className="w-full h-full rounded-md object-contain"
                     />
                   </div>
                 ))}
@@ -206,28 +240,28 @@ export function FashionShowcase() {
             {/* Right column - scrolling down */}
             <div className="h-full overflow-hidden" ref={scrollDownContainerRef}>
               <div className="grid grid-cols-1 gap-2 h-auto">
-                {/* First set of images */}
-                {fashionImages.map((item) => (
-                  <div key={`right-${item.id}`} className="overflow-hidden h-[200px]">
+                {/* First set of images - Column 2 (different images) */}
+                {fashionImagesColumn2.map((item) => (
+                  <div key={item.id} className="overflow-hidden h-[400px]">
                     <Image
                       src={item.image || "/placeholder.svg"}
                       alt={item.alt}
-                      width={400}
-                      height={300}
-                      className="w-full rounded-md h-full object-cover"
+                      width={300}
+                      height={600}
+                      className="w-full rounded-md h-full object-contain"
                     />
                   </div>
                 ))}
 
-                {/* Duplicate images for seamless scrolling */}
-                {fashionImages.map((item) => (
-                  <div key={`right-dup-${item.id}`} className="overflow-hidden h-[200px]">
+                {/* Duplicate images for seamless scrolling - Column 2 */}
+                {fashionImagesColumn2.map((item) => (
+                  <div key={`dup-${item.id}`} className="overflow-hidden h-[400px]">
                     <Image
                       src={item.image || "/placeholder.svg"}
                       alt={item.alt}
-                      width={400}
-                      height={300}
-                      className="w-full rounded-md h-full object-cover"
+                      width={300}
+                      height={600}
+                      className="w-full rounded-md h-full object-contain"
                     />
                   </div>
                 ))}
