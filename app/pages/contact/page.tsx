@@ -73,7 +73,7 @@ export default function ContactPage() {
             {/* Contact form */}
             <div>
               <form
-                action="https://formsubmit.co/fredawumeyfafa@gmail.com"
+                action="https://formsubmit.co/2cd8fe56d03bf1dc7c4460dfcde9a017"
                 method="POST"
                 className="space-y-4 text-black"
                 onSubmit={handleContactSubmit}

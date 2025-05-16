@@ -2,9 +2,9 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { PageLayout } from "@/components/page-layout"
-import { ChevronDown, Calendar, Clock, ArrowRight, Loader2 } from "lucide-react"
+import { ChevronDown, Calendar, Clock, Loader2 } from "lucide-react"
 import { submitAppointmentForm } from "@/app/actions/appointment-actions"
 import { AppointmentConfirmation } from "@/components/appointment-confirmation"
 import type { AppointmentResult } from "@/app/actions/appointment-actions"
@@ -27,6 +27,13 @@ export default function ScheduleAppointmentPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formError, setFormError] = useState<string | null>(null)
   const [result, setResult] = useState<AppointmentResult | null>(null)
+  // Add the isMounted state to prevent hydration errors
+  const [isMounted, setIsMounted] = useState(false)
+
+  // Add useEffect to set isMounted after component mounts
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -48,6 +55,7 @@ export default function ScheduleAppointmentPage() {
     return null
   }
 
+  // Update the handleSubmit function to include Google Calendar link generation
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -62,7 +70,13 @@ export default function ScheduleAppointmentPage() {
     setIsSubmitting(true)
 
     try {
-      const result = await submitAppointmentForm(formData)
+      // Create appointment data with Google Calendar link
+      const appointmentData = {
+        ...formData,
+        googleCalendarLink: generateGoogleCalendarLink(formData),
+      }
+
+      const result = await submitAppointmentForm(appointmentData)
       setResult(result)
 
       if (!result.success) {
@@ -76,15 +90,57 @@ export default function ScheduleAppointmentPage() {
     }
   }
 
+  // Add a function to generate Google Calendar link
+  const generateGoogleCalendarLink = (data: typeof formData) => {
+    if (!data.appointmentDate || !data.appointmentTime) return ""
+
+    // Format date and time for Google Calendar
+    const [year, month, day] = data.appointmentDate.split("-")
+    const [hours, minutes] = data.appointmentTime.split(":")
+
+    // Create start and end dates (appointments last 1 hour by default)
+    const startDate = new Date(Number(year), Number(month) - 1, Number(day), Number(hours), Number(minutes))
+    const endDate = new Date(startDate.getTime() + 60 * 60 * 1000) // Add 1 hour
+
+    // Format dates for Google Calendar URL
+    const formatDate = (date: Date) => {
+      return date.toISOString().replace(/-|:|\.\d+/g, "")
+    }
+
+    const startDateFormatted = formatDate(startDate)
+    const endDateFormatted = formatDate(endDate)
+
+    // Create event details
+    const eventName = encodeURIComponent(`Appointment with ${data.firstName} ${data.lastName}`)
+    const eventDetails = encodeURIComponent(
+      `Appointment details:\nName: ${data.firstName} ${data.lastName}\nEmail: ${data.email}\nPhone: ${data.phone}\nPreferred Contact: ${data.preferredContact}`,
+    )
+    const location = encodeURIComponent("The Cultured Man")
+
+    // Generate Google Calendar link
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${eventName}&details=${eventDetails}&location=${location}&dates=${startDateFormatted}/${endDateFormatted}`
+  }
+
+  // Return early if not mounted to prevent hydration errors
+  if (!isMounted) {
+    return (
+      <PageLayout>
+        <div className="container mx-auto px-4 py-8 min-h-screen flex items-center justify-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-black"></div>
+        </div>
+      </PageLayout>
+    )
+  }
+
   return (
     <PageLayout>
       <div className="container mx-auto px-4 py-8">
         {/* Main heading */}
-        <h1 className="text-3xl md:text-4xl font-bold text-center text-black mb-8">Schedule An Appointment</h1>
+        <h1 className="text-3xl md:text-4xl text-black font-bold text-center mb-8">Schedule An Appointment</h1>
 
         {/* Description paragraph */}
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <p className="text-gray-700 md:px-12 px-2">
+          <p className="text-gray-700">
             At The Cultured Man, We Understand That True Luxury Is In The Details. Whether You're Looking For A
             Perfectly Tailored Suit, Style Consultation, Or Personalized Shopping Experience, Our Appointment-Based
             Services Ensure You Receive The Undivided Attention And Expertise You Deserve.
@@ -204,10 +260,11 @@ export default function ScheduleAppointmentPage() {
                     name="appointmentDate"
                     value={formData.appointmentDate}
                     onChange={handleChange}
-                    className="w-full border-b border-black py-2 focus:outline-none focus:border-black bg-transparent text-black pr-10"
+                    min={new Date().toISOString().split("T")[0]} // Set min date to today
+                    className="w-full border-b border-black py-2 focus:outline-none focus:border-black bg-transparent text-black pr-10 date-input-custom"
                     required
                   />
-                  <Calendar className="absolute right-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-500" />
+                  <Calendar className="absolute right-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-500 pointer-events-none" />
                 </div>
               </div>
 
@@ -273,11 +330,15 @@ export default function ScheduleAppointmentPage() {
                     name="appointmentTime"
                     value={formData.appointmentTime}
                     onChange={handleChange}
-                    className="w-full border-b border-black py-2 focus:outline-none focus:border-black bg-transparent text-black pr-10"
+                    min="09:00"
+                    max="18:00"
+                    step="1800" // 30-minute intervals
+                    className="w-full border-b border-black py-2 focus:outline-none focus:border-black bg-transparent text-black pr-10 time-input-custom"
                     required
                   />
-                  <Clock className="absolute right-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-500" />
+                  <Clock className="absolute right-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-500 pointer-events-none" />
                 </div>
+                <p className="text-xs text-gray-500 mt-1">Business hours: 9:00 AM - 6:00 PM</p>
               </div>
 
               {/* Form Error */}
@@ -298,7 +359,7 @@ export default function ScheduleAppointmentPage() {
                   ) : (
                     <>
                       <span className="mr-2">SUBMIT</span>
-                      <ArrowRight className="h-4 w-4" />
+                      <span className="arrow-line"></span>
                     </>
                   )}
                 </button>
