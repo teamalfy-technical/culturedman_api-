@@ -55,7 +55,7 @@ export default function SafariSuitPage() {
                 <Image src={item.image || "/placeholder.svg"} alt={item.alt} fill className="object-cover" />
               </div>
               <Link
-                href={`/pages/categories/safari-suit/${item.id}`}
+                href={`/pages/categories/corporate/safari-suit/${item.id}`}
                 className="bg-black text-white py-3 px-6 rounded-full flex items-center justify-center"
               >
                 <span className="mr-2">DETAILS</span>

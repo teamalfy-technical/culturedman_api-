@@ -55,7 +55,7 @@ export default function OvercoatPage() {
                 <Image src={item.image || "/placeholder.svg"} alt={item.alt} fill className="object-cover center-center" />
               </div>
               <Link
-                href={`/pages/categories/overcoat/${item.id}`}
+                href={`/pages/categories/corporate/overcoat/${item.id}`}
                 className="bg-black text-white py-3 px-6 rounded-full flex items-center justify-center"
               >
                 <span className="mr-2">DETAILS</span>

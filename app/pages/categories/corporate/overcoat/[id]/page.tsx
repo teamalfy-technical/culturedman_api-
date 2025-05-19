@@ -6,8 +6,8 @@ import { notFound } from "next/navigation"
 import { useParams } from "next/navigation"
 
 // Sample single breasted collection data with more details
-const doubleBreastedCollection = {
-  "double-breasted-1": {
+const overcoatCollection = {
+  "overcoat-1": {
     title: "Executive Burgundy Suit",
     colour: "Burgundy",
     size: "42 Regular",
@@ -26,20 +26,20 @@ const doubleBreastedCollection = {
     ],
     images: [
       {
-        src: "/images/corporate/double-breasted/double-breasted-1.png",
+        src: "/images/corporate/overcoat/over-coat.jpg",
         alt: "Man in burgundy suit - front view",
       },
       {
-        src: "/images/corporate/double-breasted/double-breasted-1.png",
+        src: "/images/corporate/overcoat/over-coat.jpg",
         alt: "Man in burgundy suit - side view",
       },
       {
-        src: "/images/corporate/double-breasted/double-breasted-1.png",
+        src: "/images/corporate/overcoat/over-coat.jpg",
         alt: "Man in burgundy suit - back view",
       },
     ],
   },
-  "double-breasted-2": {
+  "overcoat-2": {
     title: "Classic Navy Business Suit",
     colour: "Navy",
     size: "40 Regular",
@@ -58,20 +58,20 @@ const doubleBreastedCollection = {
     ],
     images: [
       {
-        src: "/images/corporate/double-breasted/double-breasted-2.jpeg",
+        src: "/images/corporate/overcoat/overcoat-1.png",
         alt: "Man in navy blue suit - front view",
       },
       {
-        src: "/images/corporate/double-breasted/double-breasted-2.jpeg",
+        src: "/images/corporate/overcoat/overcoat-1.png",
         alt: "Man in navy blue suit - side view",
       },
       {
-        src: "/images/corporate/double-breasted/double-breasted-2.jpeg",
+        src: "/images/corporate/overcoat/overcoat-1.png",
         alt: "Man in navy blue suit - back view",
       },
     ],
   },
-  "double-breasted-3": {
+  "overcoat-3": {
     title: "Gray Pinstripe Suit",
     colour: "Gray Pinstripe",
     size: "44 Regular",
@@ -90,20 +90,20 @@ const doubleBreastedCollection = {
     ],
     images: [
       {
-        src: "/images/corporate/double-breasted/double-breasted-3.jpeg",
+        src: "/images/corporate/overcoat/over-coat-2.jpg",
         alt: "Man in gray pinstripe suit - front view",
       },
       {
-        src: "/images/corporate/double-breasted/double-breasted-3.jpeg",
+        src: "/images/corporate/overcoat/over-coat-2.jpg",
         alt: "Man in gray pinstripe suit - side view",
       },
       {
-        src: "/images/corporate/double-breasted/double-breasted-3.jpeg",
+        src: "/images/corporate/overcoat/over-coat-2.jpg",
         alt: "Man in gray pinstripe suit - back view",
       },
     ],
   },
-  "double-breasted-4": {
+  "overcoat-4": {
     title: "Black Professional Suit",
     colour: "Black",
     size: "40 Regular",
@@ -122,20 +122,20 @@ const doubleBreastedCollection = {
     ],
     images: [
       {
-        src: "/images/corporate/double-breasted/double-breasted-4.jpeg",
+        src: "/images/corporate/overcoat/over-coat-3.jpg",
         alt: "Man in black suit with tie - front view",
       },
       {
-        src: "/images/corporate/double-breasted/double-breasted-4.jpeg",
+        src: "/images/corporate/overcoat/over-coat-3.jpg",
         alt: "Man in black suit with tie - side view",
       },
       {
-        src: "/images/corporate/double-breasted/double-breasted-4.jpeg",
+        src: "/images/corporate/overcoat/over-coat-3.jpg",
         alt: "Man in black suit with tie - back view",
       },
     ],
   },
-  "double-breasted-5": {
+   "overcoat-5": {
     title: "Black Professional Suit",
     colour: "Black",
     size: "40 Regular",
@@ -154,20 +154,20 @@ const doubleBreastedCollection = {
     ],
     images: [
       {
-        src: "/images/corporate/double-breasted/double-breasted-5.jpeg",
+        src: "/images/corporate/overcoat/over-coat-4.jpg",
         alt: "Man in black suit with tie - front view",
       },
       {
-        src: "/images/corporate/double-breasted/double-breasted-5.jpeg",
+        src: "/images/corporate/overcoat/over-coat-4.jpg",
         alt: "Man in black suit with tie - side view",
       },
       {
-        src: "/images/corporate/double-breasted/double-breasted-5.jpeg",
+        src: "/images/corporate/overcoat/over-coat-4.jpg",
         alt: "Man in black suit with tie - back view",
       },
     ],
   },
-  "double-breasted-6": {
+   "overcoat-6": {
     title: "Black Professional Suit",
     colour: "Black",
     size: "40 Regular",
@@ -186,25 +186,25 @@ const doubleBreastedCollection = {
     ],
     images: [
       {
-        src: "/images/corporate/double-breasted/double-breasted-6.jpg",
+        src: "/images/corporate/overcoat/over-coat-5.jpg",
         alt: "Man in black suit with tie - front view",
       },
       {
-        src: "/images/corporate/double-breasted/double-breasted-6.jpg",
+        src: "/images/corporate/overcoat/over-coat-5.jpg",
         alt: "Man in black suit with tie - side view",
       },
       {
-        src: "/images/corporate/double-breasted/double-breasted-6.jpg",
+        src: "/images/corporate/overcoat/over-coat-5.jpg",
         alt: "Man in black suit with tie - back view",
       },
     ],
   },
 }
 
-export default function DoubleBreastedItemPage() {
+export default function OvercoatItemPage() {
   const params = useParams()
   const id = params.id as string
-  const item = doubleBreastedCollection[id as keyof typeof doubleBreastedCollection]
+  const item = overcoatCollection[id as keyof typeof overcoatCollection]
 
   if (!item) {
     notFound()
@@ -219,8 +219,8 @@ export default function DoubleBreastedItemPage() {
         fit={item.fit}
         details={item.details}
         images={item.images}
-        backLink="/pages/categories/corporate/double-breasted"
-        backLinkText="Back to Single Breasted Collection"
+        backLink="/pages/categories/corporate/overcoat"
+        backLinkText="Back to Corporate Overcoat Collection"
       />
     </PageLayout>
   )
