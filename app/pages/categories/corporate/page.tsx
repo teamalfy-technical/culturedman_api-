@@ -6,24 +6,32 @@ import { ArrowLeft } from "lucide-react"
 // Sample corporate collection data
 const corporateCollection = [
   {
-    id: "corporate-1",
+    id: "single-breasted",
     image: "/images/corporate/single-breasted/single-breasted-1.png",
     alt: "Man in burgundy suit",
+    path: "/pages/categories/corporate/single-breasted",
+    title: "Single Breasted",
   },
   {
-    id: "corporate-2",
+    id: "double-breasted",
     image: "/images/corporate/double-breasted/double-breasted-1.png",
     alt: "Man in navy blue suit",
+    path: "/pages/categories/corporate/double-breasted",
+    title: "Double Breasted",
   },
   {
-    id: "corporate-3",
+    id: "overcoat",
     image: "/images/corporate/overcoat/overcoat-1.png",
     alt: "Man in gray pinstripe suit",
+    path: "/pages/categories/corporate/overcoat",
+    title: "Overcoats",
   },
   {
-    id: "corporate-4",
+    id: "safari-suit",
     image: "/images/corporate/safari-suit/safari-suit-1.png",
     alt: "Man in black suit with tie",
+    path: "/pages/categories/corporate/safari-suit",
+    title: "Safari Suits",
   },
 ]
 
@@ -45,10 +53,10 @@ export default function CorporatePage() {
                 <Image src={item.image || "/placeholder.svg"} alt={item.alt} fill className="object-cover" />
               </div>
               <Link
-                href={`/pages/categories/corporate/${item.id}`}
-                className="bg-[#1a1a1a] text-white py-3 px-6 rounded-full flex items-center justify-center"
+                href={item.path}
+                className="bg-black text-white py-3 px-6 rounded-full flex items-center justify-center"
               >
-                <span className="mr-2">DETAILS</span>
+                <span className="mr-2 uppercase">{item.title}</span>
                 <span className="text-lg">→</span>
               </Link>
             </div>

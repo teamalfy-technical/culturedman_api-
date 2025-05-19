@@ -110,7 +110,7 @@ export function Header() {
     >
       <div className="container mx-auto px-4">
         {/* Desktop Header */}
-        <div className="hidden md:flex items-center justify-between">
+        <div className="hidden md:flex items-center justify-between px-5">
           {/* Desktop Navigation Links */}
           <nav className="flex items-center space-x-8">
             <Link href="/" className="text-white hover:text-white/80 text-sm">

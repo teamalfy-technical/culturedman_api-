@@ -7,22 +7,32 @@ import { ArrowLeft } from "lucide-react"
 const overcoatCollection = [
   {
     id: "overcoat-1",
-    image: "/images/corporate/overcoat/overcoat-1.png",
+    image: "/images/corporate/overcoat/over-coat.jpg",
     alt: "Man in camel overcoat",
   },
   {
     id: "overcoat-2",
-    image: "/images/corporate/overcoat/overcoat-2.png",
+    image: "/images/corporate/overcoat/overcoat-1.png",
     alt: "Man in navy blue overcoat",
   },
   {
     id: "overcoat-3",
-    image: "/images/corporate/overcoat/overcoat-3.png",
+    image: "/images/corporate/overcoat/over-coat-2.jpg",
     alt: "Man in charcoal overcoat",
   },
   {
     id: "overcoat-4",
-    image: "/images/corporate/overcoat/overcoat-4.png",
+    image: "/images/corporate/overcoat/over-coat-3.jpg",
+    alt: "Man in black overcoat",
+  },
+   {
+    id: "overcoat-5",
+    image: "/images/corporate/overcoat/over-coat-4.jpg",
+    alt: "Man in black overcoat",
+  },
+   {
+    id: "overcoat-6",
+    image: "/images/corporate/overcoat/over-coat-5.jpg",
     alt: "Man in black overcoat",
   },
 ]
@@ -42,11 +52,11 @@ export default function OvercoatPage() {
           {overcoatCollection.map((item) => (
             <div key={item.id} className="flex flex-col">
               <div className="relative aspect-square rounded-md overflow-hidden mb-4">
-                <Image src={item.image || "/placeholder.svg"} alt={item.alt} fill className="object-cover" />
+                <Image src={item.image || "/placeholder.svg"} alt={item.alt} fill className="object-cover center-center" />
               </div>
               <Link
                 href={`/pages/categories/overcoat/${item.id}`}
-                className="bg-[#1a1a1a] text-white py-3 px-6 rounded-full flex items-center justify-center"
+                className="bg-black text-white py-3 px-6 rounded-full flex items-center justify-center"
               >
                 <span className="mr-2">DETAILS</span>
                 <span className="text-lg">→</span>

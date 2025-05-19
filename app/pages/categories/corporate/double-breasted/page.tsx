@@ -12,17 +12,27 @@ const doubleBreastedCollection = [
   },
   {
     id: "double-breasted-2",
-    image: "/images/corporate/double-breasted/double-breasted-2.png",
+    image: "/images/corporate/double-breasted/double-breasted-2.jpeg",
     alt: "Man in charcoal double breasted suit",
   },
   {
     id: "double-breasted-3",
-    image: "/images/corporate/double-breasted/double-breasted-3.png",
+    image: "/images/corporate/double-breasted/double-breasted-3.jpeg",
     alt: "Man in gray pinstripe double breasted suit",
   },
   {
     id: "double-breasted-4",
-    image: "/images/corporate/double-breasted/double-breasted-4.png",
+    image: "/images/corporate/double-breasted/double-breasted-4.jpeg",
+    alt: "Man in black double breasted suit",
+  },
+  {
+    id: "double-breasted-5",
+    image: "/images/corporate/double-breasted/double-breasted-5.jpeg",
+    alt: "Man in black double breasted suit",
+  },
+  {
+    id: "double-breasted-6",
+    image: "/images/corporate/double-breasted/double-breasted-6.jpg",
     alt: "Man in black double breasted suit",
   },
 ]
@@ -46,7 +56,7 @@ export default function DoubleBreastedPage() {
               </div>
               <Link
                 href={`/pages/categories/double-breasted/${item.id}`}
-                className="bg-[#1a1a1a] text-white py-3 px-6 rounded-full flex items-center justify-center"
+                className="bg-black text-white py-3 px-6 rounded-full flex items-center justify-center"
               >
                 <span className="mr-2">DETAILS</span>
                 <span className="text-lg">→</span>

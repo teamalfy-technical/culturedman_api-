@@ -12,17 +12,27 @@ const safariSuitCollection = [
   },
   {
     id: "safari-suit-2",
-    image: "/images/corporate/safari-suit/safari-suit-2.png",
+    image: "/images/corporate/safari-suit/safari.jpg",
     alt: "Man in khaki safari suit",
   },
   {
     id: "safari-suit-3",
-    image: "/images/corporate/safari-suit/safari-suit-3.png",
+    image: "/images/corporate/safari-suit/safari2.jpg",
     alt: "Man in olive safari suit",
   },
   {
     id: "safari-suit-4",
-    image: "/images/corporate/safari-suit/safari-suit-4.png",
+    image: "/images/corporate/safari-suit/safari3.jpg",
+    alt: "Man in tan safari suit",
+  },
+  {
+    id: "safari-suit-5",
+    image: "/images/corporate/safari-suit/safari4.jpg",
+    alt: "Man in tan safari suit",
+  },
+  {
+    id: "safari-suit-6",
+    image: "/images/corporate/safari-suit/safari5.jpg",
     alt: "Man in tan safari suit",
   },
 ]
@@ -46,7 +56,7 @@ export default function SafariSuitPage() {
               </div>
               <Link
                 href={`/pages/categories/safari-suit/${item.id}`}
-                className="bg-[#1a1a1a] text-white py-3 px-6 rounded-full flex items-center justify-center"
+                className="bg-black text-white py-3 px-6 rounded-full flex items-center justify-center"
               >
                 <span className="mr-2">DETAILS</span>
                 <span className="text-lg">→</span>
