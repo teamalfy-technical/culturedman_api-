@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react"
+import { FaPinterest } from "react-icons/fa"
 
 export function Footer() {
   return (
@@ -27,7 +28,14 @@ export function Footer() {
               </div>
             </div>
             <div className="flex space-x-6 mt-8">
-              <Link href="#" className="text-white hover:text-white/80">
+              <Link href="https://www.instagram.com/theculturedman_?igsh=NGZ5bmNrYWU3aXFj" className="text-white hover:text-white/80">
+                <Instagram className="h-5 w-5" />
+                <span className="sr-only">Instagram</span>
+              </Link>
+              <Link href="https://pin.it/as9NwEZga" >
+                <FaPinterest className="h-5 w-5 text-white hover:text-white/80" />
+              </Link>
+              {/* <Link href="#" className="text-white hover:text-white/80">
                 <Facebook className="h-5 w-5" />
                 <span className="sr-only">Facebook</span>
               </Link>
@@ -36,13 +44,9 @@ export function Footer() {
                 <span className="sr-only">Youtube</span>
               </Link>
               <Link href="#" className="text-white hover:text-white/80">
-                <Instagram className="h-5 w-5" />
-                <span className="sr-only">Instagram</span>
-              </Link>
-              <Link href="#" className="text-white hover:text-white/80">
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
-              </Link>
+              </Link> */}
             </div>
           </div>
 
