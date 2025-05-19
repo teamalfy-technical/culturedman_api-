@@ -55,7 +55,7 @@ export default function DoubleBreastedPage() {
                 <Image src={item.image || "/placeholder.svg"} alt={item.alt} fill className="object-cover" />
               </div>
               <Link
-                href={`/pages/categories/double-breasted/${item.id}`}
+                href={`/pages/categories/corporate/double-breasted/${item.id}`}
                 className="bg-black text-white py-3 px-6 rounded-full flex items-center justify-center"
               >
                 <span className="mr-2">DETAILS</span>
