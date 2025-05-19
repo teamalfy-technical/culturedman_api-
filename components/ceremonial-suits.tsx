@@ -207,7 +207,7 @@ export function CeremonialSuits() {
 
                     <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white border-solid  roundede-md p-4">
                       <h3 className="text-lg font-bold">{item.title}</h3>
-                      <p className="text-sm text-black line-clamp-2">{item.description}</p>
+                      <p className="text-sm text-white line-clamp-2">{item.description}</p>
                     </div>
                   </div>
                 ))}

@@ -68,7 +68,7 @@ export default function ContactPage() {
         </div>
 
         {/* Contact form and map */}
-        <div className="bg-white rounded-lg shadow-md p-8 mb-12">
+        <div className="bg-white rounded-lg shadow-md md:p-8 p-2 mb-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Contact form */}
             <div>

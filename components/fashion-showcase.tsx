@@ -173,7 +173,7 @@ export function FashionShowcase() {
   }, [])
 
   return (
-    <section className="py-16 mx-8 bg-black m-2 rounded-[2vw]">
+    <section className="py-16 md:mx-8 bg-black m-2 rounded-[2vw]">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-white m-1 md:m-4 rounded-[1vw] my-auto">
           {/* Text content */}
@@ -211,7 +211,7 @@ export function FashionShowcase() {
               <div className="grid grid-cols-1 gap-2 h-auto">
                 {/* First set of images - Column 1 */}
                 {fashionImagesColumn1.map((item) => (
-                  <div key={item.id} className="overflow-hidden h-[400px]">
+                  <div key={item.id} className="overflow-hidden md:h-[400px]">
                     <Image
                       src={item.image || "/placeholder.svg"}
                       alt={item.alt}
@@ -224,7 +224,7 @@ export function FashionShowcase() {
 
                 {/* Duplicate images for seamless scrolling - Column 1 */}
                 {fashionImagesColumn1.map((item) => (
-                  <div key={`dup-${item.id}`} className="overflow-hidden h-[400px]">
+                  <div key={`dup-${item.id}`} className="overflow-hidden md:h-[400px]">
                     <Image
                       src={item.image || "/placeholder.svg"}
                       alt={item.alt}
@@ -242,7 +242,7 @@ export function FashionShowcase() {
               <div className="grid grid-cols-1 gap-2 h-auto">
                 {/* First set of images - Column 2 (different images) */}
                 {fashionImagesColumn2.map((item) => (
-                  <div key={item.id} className="overflow-hidden h-[400px]">
+                  <div key={item.id} className="overflow-hidden md:h-[400px]">
                     <Image
                       src={item.image || "/placeholder.svg"}
                       alt={item.alt}
@@ -255,7 +255,7 @@ export function FashionShowcase() {
 
                 {/* Duplicate images for seamless scrolling - Column 2 */}
                 {fashionImagesColumn2.map((item) => (
-                  <div key={`dup-${item.id}`} className="overflow-hidden h-[400px]">
+                  <div key={`dup-${item.id}`} className="overflow-hidden md:h-[400px]">
                     <Image
                       src={item.image || "/placeholder.svg"}
                       alt={item.alt}
