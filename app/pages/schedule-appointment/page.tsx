@@ -5,9 +5,7 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import { PageLayout } from "@/components/page-layout"
 import { ChevronDown, Calendar, Clock, Loader2 } from "lucide-react"
-import { submitAppointmentForm } from "@/app/actions/appointment-actions"
 import { AppointmentConfirmation } from "@/components/appointment-confirmation"
-import type { AppointmentResult } from "@/app/actions/appointment-actions"
 
 export default function ScheduleAppointmentPage() {
   const [formData, setFormData] = useState({
@@ -26,7 +24,10 @@ export default function ScheduleAppointmentPage() {
   const [hearAboutUsOpen, setHearAboutUsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formError, setFormError] = useState<string | null>(null)
-  const [result, setResult] = useState<AppointmentResult | null>(null)
+  const [isSuccess, setIsSuccess] = useState(false)
+  const [confirmationMessage, setConfirmationMessage] = useState("")
+  const [googleMeetLink, setGoogleMeetLink] = useState("")
+  const [googleCalendarLink, setGoogleCalendarLink] = useState("")
   // Add the isMounted state to prevent hydration errors
   const [isMounted, setIsMounted] = useState(false)
 
@@ -55,43 +56,23 @@ export default function ScheduleAppointmentPage() {
     return null
   }
 
-  // Update the handleSubmit function to include Google Calendar link generation
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  // Generate Google Meet link
+  const generateGoogleMeetLink = (data: typeof formData) => {
+    if (!data.appointmentDate || !data.appointmentTime) return ""
 
-    // Validate form
-    const error = validateForm()
-    if (error) {
-      setFormError(error)
-      return
-    }
+    // Format date and time for Google Meet
+    const [year, month, day] = data.appointmentDate.split("-")
+    const [hours, minutes] = data.appointmentTime.split(":")
 
-    setFormError(null)
-    setIsSubmitting(true)
+    // Create a unique meeting ID based on customer info and date/time
+    const meetingId = `${data.firstName.toLowerCase()}-${data.lastName.toLowerCase()}-${year}${month}${day}-${hours}${minutes}`
 
-    try {
-      // Create appointment data with Google Calendar link
-      const appointmentData = {
-        ...formData,
-        googleCalendarLink: generateGoogleCalendarLink(formData),
-      }
-
-      const result = await submitAppointmentForm(appointmentData)
-      setResult(result)
-
-      if (!result.success) {
-        setFormError(result.error || "An error occurred")
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error)
-      setFormError("An unexpected error occurred. Please try again.")
-    } finally {
-      setIsSubmitting(false)
-    }
+    // Generate Google Meet link
+    return `https://meet.google.com/${meetingId.substring(0, 5)}-${meetingId.substring(5, 10)}-${meetingId.substring(10, 15)}`
   }
 
-  // Add a function to generate Google Calendar link
-  const generateGoogleCalendarLink = (data: typeof formData) => {
+  // Generate Google Calendar link with Google Meet integration
+  const generateGoogleCalendarLink = (data: typeof formData, meetLink: string) => {
     if (!data.appointmentDate || !data.appointmentTime) return ""
 
     // Format date and time for Google Calendar
@@ -110,15 +91,83 @@ export default function ScheduleAppointmentPage() {
     const startDateFormatted = formatDate(startDate)
     const endDateFormatted = formatDate(endDate)
 
+    // Format date and time for display
+    const dateOptions: Intl.DateTimeFormatOptions = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }
+    const timeOptions: Intl.DateTimeFormatOptions = {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    }
+
+    const formattedDate = startDate.toLocaleDateString("en-US", dateOptions)
+    const formattedTime = startDate.toLocaleTimeString("en-US", timeOptions)
+
     // Create event details
     const eventName = encodeURIComponent(`Appointment with ${data.firstName} ${data.lastName}`)
     const eventDetails = encodeURIComponent(
-      `Appointment details:\nName: ${data.firstName} ${data.lastName}\nEmail: ${data.email}\nPhone: ${data.phone}\nPreferred Contact: ${data.preferredContact}`,
+      `Appointment details:\nName: ${data.firstName} ${data.lastName}\nEmail: ${data.email}\nPhone: ${data.phone}\nPreferred Contact: ${data.preferredContact}\n\nJoin Google Meet: ${meetLink}`,
     )
     const location = encodeURIComponent("The Cultured Man")
 
-    // Generate Google Calendar link
-    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${eventName}&details=${eventDetails}&location=${location}&dates=${startDateFormatted}/${endDateFormatted}`
+    // Generate Google Calendar link with Meet integration
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${eventName}&details=${eventDetails}&location=${location}&dates=${startDateFormatted}/${endDateFormatted}&add=${encodeURIComponent(data.email)}&add=info.theculturedman@gmail.com&ctz=local&crm=AVAILABLE&trp=true`
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    // Validate form
+    const error = validateForm()
+    if (error) {
+      setFormError(error)
+      return
+    }
+
+    setFormError(null)
+    setIsSubmitting(true)
+
+    // Generate Google Meet link
+    const meetLink = generateGoogleMeetLink(formData)
+    setGoogleMeetLink(meetLink)
+
+    // Generate Google Calendar link with Meet integration
+    const calendarLink = generateGoogleCalendarLink(formData, meetLink)
+    setGoogleCalendarLink(calendarLink)
+
+    // Format date and time for display
+    const appointmentDate = new Date(`${formData.appointmentDate}T${formData.appointmentTime}`)
+    const dateOptions: Intl.DateTimeFormatOptions = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }
+    const timeOptions: Intl.DateTimeFormatOptions = {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    }
+
+    const formattedDate = appointmentDate.toLocaleDateString("en-US", dateOptions)
+    const formattedTime = appointmentDate.toLocaleTimeString("en-US", timeOptions)
+
+    // Create confirmation message
+    const message = `Thank you, ${formData.firstName}! Your appointment has been scheduled for ${formattedDate} at ${formattedTime}. We will contact you via your preferred method (${formData.preferredContact}) to confirm the details. You can join the meeting via Google Meet at the scheduled time. Click button below to add meeting to your calendar`
+    setConfirmationMessage(message)
+
+    // Let the form submit naturally to FormSubmit
+    // FormSubmit will handle the redirect back to the thank-you page
+
+    // Reset form state after a delay to simulate submission
+    setTimeout(() => {
+      setIsSubmitting(false)
+      setIsSuccess(true)
+    }, 1500)
   }
 
   // Return early if not mounted to prevent hydration errors
@@ -147,10 +196,27 @@ export default function ScheduleAppointmentPage() {
           </p>
         </div>
 
-        {!result?.success ? (
+        {!isSuccess ? (
           /* Appointment Form */
           <div className="max-w-2xl mx-auto">
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form
+              action="https://formsubmit.co/2cd8fe56d03bf1dc7c4460dfcde9a017"
+              method="POST"
+              className="space-y-8"
+              onSubmit={handleSubmit}
+            >
+              {/* FormSubmit configuration */}
+              <input type="hidden" name="_subject" value="New Appointment Request" />
+              <input type="hidden" name="_next" value="https://theculturedman.com/thank-you" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="text" name="_honey" style={{ display: "none" }} />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_format" value="plain" />
+
+              {/* Hidden fields for Google Meet and Calendar links */}
+              <input type="hidden" name="googleMeetLink" id="googleMeetLink" value={googleMeetLink} />
+              <input type="hidden" name="googleCalendarLink" id="googleCalendarLink" value={googleCalendarLink} />
+
               {/* First Name */}
               <div className="form-group">
                 <label htmlFor="firstName" className="block text-black font-medium mb-2">
@@ -246,6 +312,7 @@ export default function ScheduleAppointmentPage() {
                     </div>
                   )}
                 </div>
+                <input type="hidden" name="preferredContact" value={formData.preferredContact} />
               </div>
 
               {/* Appointment Date */}
@@ -316,6 +383,7 @@ export default function ScheduleAppointmentPage() {
                     </div>
                   )}
                 </div>
+                <input type="hidden" name="hearAboutUs" value={formData.hearAboutUs} />
               </div>
 
               {/* Appointment Time */}
@@ -368,7 +436,11 @@ export default function ScheduleAppointmentPage() {
           </div>
         ) : (
           /* Confirmation */
-          <AppointmentConfirmation message={result.message || "Your appointment has been scheduled."} />
+          <AppointmentConfirmation
+            message={confirmationMessage}
+            calendarLink={googleCalendarLink}
+            meetLink={googleMeetLink}
+          />
         )}
       </div>
     </PageLayout>
