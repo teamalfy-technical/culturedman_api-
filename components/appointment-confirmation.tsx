@@ -21,7 +21,7 @@ export function AppointmentConfirmation({ message, calendarLink, mapsLink }: App
       <div className="flex justify-center mb-6">
         <CheckCircle className="h-16 w-16 text-green-600" />
       </div>
-      <h2 className="text-2xl font-bold mb-4">Appointment Scheduled</h2>
+      <h2 className="text-2xl font-bold mb-4 text-black">Appointment Scheduled</h2>
       <p className="text-lg mb-6">{message}</p>
 
       <div className="flex flex-col md:flex-row gap-4 text-black justify-center mt-6 mb-8">

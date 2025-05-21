@@ -162,7 +162,7 @@ export default function ScheduleAppointmentPage() {
     <PageLayout>
       <div className="container mx-auto px-4 py-8">
         {/* Main heading */}
-        <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">Schedule An Appointment</h1>
+        <h1 className="text-3xl md:text-4xl text-black font-bold text-center mb-8">Schedule An Appointment</h1>
 
         {/* Description paragraph */}
         <div className="max-w-4xl mx-auto text-center mb-16">
