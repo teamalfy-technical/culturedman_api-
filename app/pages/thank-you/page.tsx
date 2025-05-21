@@ -1,4 +1,13 @@
+"use client"
+
 import { Suspense } from "react"
+import { useEffect, useState } from "react"
+import Link from "next/link"
+import { PageLayout } from "@/components/page-layout"
+import { CheckCircle, Calendar, MapPin } from "lucide-react"
+import { useSearchParams } from "next/navigation"
+
+
 // import ThankYouPageContent from "./ThankYouContent"
 
 export default function ThankYouPage() {
@@ -8,14 +17,6 @@ export default function ThankYouPage() {
     </Suspense>
   )
 }
-
-"use client"
-
-import { useEffect, useState } from "react"
-import Link from "next/link"
-import { PageLayout } from "@/components/page-layout"
-import { CheckCircle, Calendar, MapPin } from "lucide-react"
-import { useSearchParams } from "next/navigation"
 
 export function ThankYouPageContent() {
   const searchParams = useSearchParams()
