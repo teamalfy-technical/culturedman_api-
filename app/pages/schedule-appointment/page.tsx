@@ -26,7 +26,7 @@ export default function ScheduleAppointmentPage() {
   const [formError, setFormError] = useState<string | null>(null)
   const [isSuccess, setIsSuccess] = useState(false)
   const [confirmationMessage, setConfirmationMessage] = useState("")
-  const [googleMeetLink, setGoogleMeetLink] = useState("")
+  const [googleMapsLink, setGoogleMapsLink] = useState("")
   const [googleCalendarLink, setGoogleCalendarLink] = useState("")
   // Add the isMounted state to prevent hydration errors
   const [isMounted, setIsMounted] = useState(false)
@@ -56,23 +56,14 @@ export default function ScheduleAppointmentPage() {
     return null
   }
 
-  // Generate Google Meet link
-  const generateGoogleMeetLink = (data: typeof formData) => {
-    if (!data.appointmentDate || !data.appointmentTime) return ""
-
-    // Format date and time for Google Meet
-    const [year, month, day] = data.appointmentDate.split("-")
-    const [hours, minutes] = data.appointmentTime.split(":")
-
-    // Create a unique meeting ID based on customer info and date/time
-    const meetingId = `${data.firstName.toLowerCase()}-${data.lastName.toLowerCase()}-${year}${month}${day}-${hours}${minutes}`
-
-    // Generate Google Meet link
-    return `https://meet.google.com/${meetingId.substring(0, 5)}-${meetingId.substring(5, 10)}-${meetingId.substring(10, 15)}`
+  // Generate Google Maps link
+  const generateGoogleMapsLink = () => {
+    // Use the specific Google Maps link provided
+    return "https://maps.app.goo.gl/pZ7P5FkkmCeNJ6pt9"
   }
 
-  // Generate Google Calendar link with Google Meet integration
-  const generateGoogleCalendarLink = (data: typeof formData, meetLink: string) => {
+  // Generate Google Calendar link with location
+  const generateGoogleCalendarLink = (data: typeof formData, mapsLink: string) => {
     if (!data.appointmentDate || !data.appointmentTime) return ""
 
     // Format date and time for Google Calendar
@@ -91,30 +82,14 @@ export default function ScheduleAppointmentPage() {
     const startDateFormatted = formatDate(startDate)
     const endDateFormatted = formatDate(endDate)
 
-    // Format date and time for display
-    const dateOptions: Intl.DateTimeFormatOptions = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    }
-    const timeOptions: Intl.DateTimeFormatOptions = {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    }
-
-    const formattedDate = startDate.toLocaleDateString("en-US", dateOptions)
-    const formattedTime = startDate.toLocaleTimeString("en-US", timeOptions)
-
     // Create event details
-    const eventName = encodeURIComponent(`Appointment with ${data.firstName} ${data.lastName}`)
+    const eventName = encodeURIComponent(`Appointment with The Cultured Man`)
     const eventDetails = encodeURIComponent(
-      `Appointment details:\nName: ${data.firstName} ${data.lastName}\nEmail: ${data.email}\nPhone: ${data.phone}\nPreferred Contact: ${data.preferredContact}\n\nJoin Google Meet: ${meetLink}`,
+      `Appointment details:\nName: ${data.firstName} ${data.lastName}\nEmail: ${data.email}\nPhone: ${data.phone}\nPreferred Contact: ${data.preferredContact}\n\nLocation: The Cultured Man\nDirections: ${mapsLink}`,
     )
     const location = encodeURIComponent("The Cultured Man")
 
-    // Generate Google Calendar link with Meet integration
+    // Generate Google Calendar link with location
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${eventName}&details=${eventDetails}&location=${location}&dates=${startDateFormatted}/${endDateFormatted}&add=${encodeURIComponent(data.email)}&add=info.theculturedman@gmail.com&ctz=local&crm=AVAILABLE&trp=true`
   }
 
@@ -131,12 +106,12 @@ export default function ScheduleAppointmentPage() {
     setFormError(null)
     setIsSubmitting(true)
 
-    // Generate Google Meet link
-    const meetLink = generateGoogleMeetLink(formData)
-    setGoogleMeetLink(meetLink)
+    // Generate Google Maps link
+    const mapsLink = generateGoogleMapsLink()
+    setGoogleMapsLink(mapsLink)
 
-    // Generate Google Calendar link with Meet integration
-    const calendarLink = generateGoogleCalendarLink(formData, meetLink)
+    // Generate Google Calendar link with location
+    const calendarLink = generateGoogleCalendarLink(formData, mapsLink)
     setGoogleCalendarLink(calendarLink)
 
     // Format date and time for display
@@ -156,8 +131,10 @@ export default function ScheduleAppointmentPage() {
     const formattedDate = appointmentDate.toLocaleDateString("en-US", dateOptions)
     const formattedTime = appointmentDate.toLocaleTimeString("en-US", timeOptions)
 
+    // Update the confirmation message to be more specific about the location
+
     // Create confirmation message
-    const message = `Thank you, ${formData.firstName}! Your appointment has been scheduled for ${formattedDate} at ${formattedTime}. We will contact you via your preferred method (${formData.preferredContact}) to confirm the details. You can join the meeting via Google Meet at the scheduled time. Click button below to add meeting to your calendar`
+    const message = `Thank you, ${formData.firstName}! Your appointment has been scheduled for ${formattedDate} at ${formattedTime}. We will contact you via your preferred method (${formData.preferredContact}) to confirm the details. You can find our location on Google Maps using the button below. Click on Add to Calendar button to add appoibtment to calendar. We look forward to seeing you at The Cultured Man!`
     setConfirmationMessage(message)
 
     // Let the form submit naturally to FormSubmit
@@ -185,7 +162,7 @@ export default function ScheduleAppointmentPage() {
     <PageLayout>
       <div className="container mx-auto px-4 py-8">
         {/* Main heading */}
-        <h1 className="text-3xl md:text-4xl text-black font-bold text-center mb-8">Schedule An Appointment</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">Schedule An Appointment</h1>
 
         {/* Description paragraph */}
         <div className="max-w-4xl mx-auto text-center mb-16">
@@ -213,8 +190,8 @@ export default function ScheduleAppointmentPage() {
               <input type="hidden" name="_template" value="table" />
               <input type="hidden" name="_format" value="plain" />
 
-              {/* Hidden fields for Google Meet and Calendar links */}
-              <input type="hidden" name="googleMeetLink" id="googleMeetLink" value={googleMeetLink} />
+              {/* Hidden fields for Google Maps and Calendar links */}
+              <input type="hidden" name="googleMapsLink" id="googleMapsLink" value={googleMapsLink} />
               <input type="hidden" name="googleCalendarLink" id="googleCalendarLink" value={googleCalendarLink} />
 
               {/* First Name */}
@@ -399,14 +376,14 @@ export default function ScheduleAppointmentPage() {
                     value={formData.appointmentTime}
                     onChange={handleChange}
                     min="09:00"
-                    max="18:00"
+                    max="20:00"
                     step="1800" // 30-minute intervals
                     className="w-full border-b border-black py-2 focus:outline-none focus:border-black bg-transparent text-black pr-10 time-input-custom"
                     required
                   />
                   <Clock className="absolute right-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-500 pointer-events-none" />
                 </div>
-                <p className="text-xs text-gray-500 mt-1">Business hours: 9:00 AM - 6:00 PM</p>
+                <p className="text-xs text-gray-500 mt-1">Business hours: 9:00 AM - 8:00 PM</p>
               </div>
 
               {/* Form Error */}
@@ -439,7 +416,7 @@ export default function ScheduleAppointmentPage() {
           <AppointmentConfirmation
             message={confirmationMessage}
             calendarLink={googleCalendarLink}
-            meetLink={googleMeetLink}
+            mapsLink={googleMapsLink}
           />
         )}
       </div>

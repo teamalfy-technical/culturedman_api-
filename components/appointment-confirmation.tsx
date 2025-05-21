@@ -1,16 +1,16 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { CheckCircle, Calendar, Video } from "lucide-react"
+import { CheckCircle, Calendar, MapPin } from "lucide-react"
 import Link from "next/link"
 
 interface AppointmentConfirmationProps {
   message: string
   calendarLink?: string
-  meetLink?: string
+  mapsLink?: string
 }
 
-export function AppointmentConfirmation({ message, calendarLink, meetLink }: AppointmentConfirmationProps) {
+export function AppointmentConfirmation({ message, calendarLink, mapsLink }: AppointmentConfirmationProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -24,18 +24,18 @@ export function AppointmentConfirmation({ message, calendarLink, meetLink }: App
       <h2 className="text-2xl font-bold mb-4">Appointment Scheduled</h2>
       <p className="text-lg mb-6">{message}</p>
 
-      <div className="flex flex-col md:flex-row gap-4 justify-center mt-6 mb-8">
-        {/* {meetLink && (
+      <div className="flex flex-col md:flex-row gap-4 text-black justify-center mt-6 mb-8">
+        {mapsLink && (
           <Link
-            href={meetLink}
+            href={mapsLink}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center bg-black text-white py-3 px-6 rounded-full hover:bg-gray-800 transition-colors"
           >
-            <Video className="mr-2 h-5 w-5" />
-            Join Google Meet
+            <MapPin className="mr-2 h-5 w-5" />
+            View Location
           </Link>
-        )} */}
+        )}
 
         {calendarLink && (
           <Link
@@ -52,7 +52,7 @@ export function AppointmentConfirmation({ message, calendarLink, meetLink }: App
 
       <div className="mt-8">
         <p className="text-gray-600">
-          If you need to reschedule or cancel your appointment, please contact us at least 24 hours in advance.
+          If you need to reschedule or cancel your appointment, please contact us on <a className="font-bold text-blue-500" href="tel:+233533078542">+233533078542</a> / <a className="font-bold text-blue-500" href="tel:+233547270254">+233547270254</a> at least 24 hours in advance.
         </p>
       </div>
     </motion.div>
