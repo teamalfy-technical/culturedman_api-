@@ -1,3 +1,14 @@
+import { Suspense } from "react"
+// import ThankYouPageContent from "./ThankYouContent"
+
+export default function ThankYouPage() {
+  return (
+    <Suspense fallback={<div className="py-16 text-center">Loading...</div>}>
+      <ThankYouPageContent />
+    </Suspense>
+  )
+}
+
 "use client"
 
 import { useEffect, useState } from "react"
@@ -6,14 +17,13 @@ import { PageLayout } from "@/components/page-layout"
 import { CheckCircle, Calendar, MapPin } from "lucide-react"
 import { useSearchParams } from "next/navigation"
 
-export default function ThankYouPage() {
+export function ThankYouPageContent() {
   const searchParams = useSearchParams()
   const [googleMapsLink, setGoogleMapsLink] = useState<string | null>(null)
   const [googleCalendarLink, setGoogleCalendarLink] = useState<string | null>(null)
   const [isAppointment, setIsAppointment] = useState(false)
 
   useEffect(() => {
-    // Check if this is a thank you page for an appointment
     const mapsLink = searchParams.get("googleMapsLink")
     const calendarLink = searchParams.get("googleCalendarLink")
 
@@ -82,4 +92,4 @@ export default function ThankYouPage() {
       </div>
     </PageLayout>
   )
-}
+} 
