@@ -117,7 +117,7 @@ export default function ContactPage() {
                 <div className="flex items-center justify-center text-center">
                   <button
                     type="submit"
-                    className="bg-black group text-white w-80 py-3 px-6 rounded-full flex items-center justify-center text-center"
+                    className="bg-black group text-white w-80 py-3 px-6 rounded-full flex items-center justify-center text-center hover:bg-gray-900"
                     onClick={()=> isContactSubmitting}
                     disabled={isContactSubmitting}
                   >

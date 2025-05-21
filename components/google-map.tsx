@@ -17,7 +17,7 @@ export function GoogleMap({
   const encodedAddress = encodeURIComponent(address)
 
   // Create the Google Maps embed URL
-  const mapUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.2896306269766!2d-0.18619492414035!3d5.6691887339789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9c7ebaeabe93%3A0x72c6d55266d8ca5d!2sThe%20Cultured%20Man!5e0!3m2!1sen!2sus!4v1714504825345!5m2!1sen!2sus`
+const mapUrl = `https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d208.40621041357352!2d-0.26380616116144145!3d5.657958394928059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9f61be4f9aff%3A0xd4da4354a07fea38!2sThe%20Cultured%20Man!5e1!3m2!1sen!2sgh!4v1747830293583!5m2!1sen!2sgh`
 
   return (
     <div className={`w-full ${className}`} style={{ height }}>
