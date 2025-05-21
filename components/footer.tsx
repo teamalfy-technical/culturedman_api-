@@ -1,9 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react"
-import { FaPinterest } from "react-icons/fa"
-
+import { Facebook, Instagram, Twitter} from "lucide-react"
+import { FaPinterest, FaTiktok } from "react-icons/fa"
+import { FaXTwitter } from "react-icons/fa6";
 export function Footer() {
   return (
     <footer className="bg-white text-white lg:py-4 sm:py-0 lg:px-8 md:px-2">
@@ -35,18 +35,27 @@ export function Footer() {
               <Link href="https://pin.it/as9NwEZga" >
                 <FaPinterest className="h-5 w-5 text-white hover:text-white/80" />
               </Link>
-              {/* <Link href="#" className="text-white hover:text-white/80">
+              <Link href="https://www.facebook.com/theculturedman.est/" className="text-white hover:text-white/80">
                 <Facebook className="h-5 w-5" />
                 <span className="sr-only">Facebook</span>
               </Link>
-              <Link href="#" className="text-white hover:text-white/80">
-                <Youtube className="h-5 w-5" />
-                <span className="sr-only">Youtube</span>
+              <Link href="https://www.tiktok.com/@theculturedman001?_t=ZM-8wXaypXtxsE&_r=1" className="text-white hover:text-white/80">
+                <FaTiktok className="h-5 w-5 text-white hover:text-white/80" />
+                <span className="sr-only">Tiktok</span>
               </Link>
-              <Link href="#" className="text-white hover:text-white/80">
-                <Linkedin className="h-5 w-5" />
-                <span className="sr-only">LinkedIn</span>
-              </Link> */}
+              {/* <a
+                href="https://x.com/theculturedman_"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-white/80"
+              >
+                <FaXTwitter className="h-5 w-5 text-white hover:text-white/80" />
+                <span className="sr-only">Twitter</span>
+              </a> */}
+              <Link href="https://x.com/theculturedman_" className="text-white hover:text-white/80">
+                <FaXTwitter className="h-5 w-5 text-white hover:text-white/80" />
+                <span className="sr-only">Twitter</span>
+              </Link>
             </div>
           </div>
 
