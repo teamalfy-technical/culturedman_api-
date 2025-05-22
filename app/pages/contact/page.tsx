@@ -159,7 +159,7 @@ export default function ContactPage() {
               <form
                 action="https://formsubmit.co/2cd8fe56d03bf1dc7c4460dfcde9a017"
                 method="POST"
-                className="flex flex-col md:flex-row max-w-xl mx-auto"
+                className="flex flex-col md:flex-row max-w-xl mx-auto mb-4"
                 onSubmit={handleNewsletterSubmit}
               >
                 {/* FormSubmit configuration */}

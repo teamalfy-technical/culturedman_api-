@@ -52,7 +52,15 @@ export function AppointmentConfirmation({ message, calendarLink, mapsLink }: App
 
       <div className="mt-8">
         <p className="text-gray-600">
-          If you need to reschedule or cancel your appointment, please contact us on <a className="font-bold text-blue-500" href="tel:+233533078542">+233533078542</a> / <a className="font-bold text-blue-500" href="tel:+233547270254">+233547270254</a> at least 24 hours in advance.
+          If you need to reschedule or cancel your appointment, please contact us on{" "}
+          <a className="font-bold text-blue-500" href="tel:+233533078542">
+            +233533078542
+          </a>{" "}
+          /{" "}
+          <a className="font-bold text-blue-500" href="tel:+233547270254">
+            +233547270254
+          </a>{" "}
+          at least 24 hours in advance.
         </p>
       </div>
     </motion.div>

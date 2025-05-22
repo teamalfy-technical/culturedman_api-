@@ -4,11 +4,9 @@ import { Suspense } from "react"
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { PageLayout } from "@/components/page-layout"
-import { CheckCircle, Calendar, MapPin } from "lucide-react"
+import { CheckCircle } from "lucide-react"
 import { useSearchParams } from "next/navigation"
-
-
-// import ThankYouPageContent from "./ThankYouContent"
+import { AppointmentConfirmation } from "@/components/appointment-confirmation"
 
 export default function ThankYouPage() {
   return (
@@ -22,23 +20,68 @@ export function ThankYouPageContent() {
   const searchParams = useSearchParams()
   const [googleMapsLink, setGoogleMapsLink] = useState<string | null>(null)
   const [googleCalendarLink, setGoogleCalendarLink] = useState<string | null>(null)
+  const [appointmentDetails, setAppointmentDetails] = useState<string | null>(null)
+  const [name, setName] = useState<string | null>(null)
   const [isAppointment, setIsAppointment] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
+    // Get parameters from URL
+    const firstName = searchParams.get("firstName")
+    const lastName = searchParams.get("lastName")
+    const details = searchParams.get("appointmentDetails")
     const mapsLink = searchParams.get("googleMapsLink")
     const calendarLink = searchParams.get("googleCalendarLink")
 
+    // Set state with URL parameters
+    if (firstName && lastName) {
+      setName(`${firstName} ${lastName}`)
+    } else if (firstName) {
+      setName(firstName)
+    }
+
+    if (details) {
+      setAppointmentDetails(decodeURIComponent(details))
+      setIsAppointment(true)
+    }
+
     if (mapsLink) {
-      setGoogleMapsLink(mapsLink)
+      setGoogleMapsLink(decodeURIComponent(mapsLink))
       setIsAppointment(true)
     }
 
     if (calendarLink) {
-      setGoogleCalendarLink(calendarLink)
+      setGoogleCalendarLink(decodeURIComponent(calendarLink))
       setIsAppointment(true)
     }
+
+    setIsLoading(false)
   }, [searchParams])
 
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-black"></div>
+      </div>
+    )
+  }
+
+  // If this is an appointment confirmation, use the AppointmentConfirmation component
+  if (isAppointment && appointmentDetails) {
+    return (
+      <PageLayout>
+        <div className="container mx-auto px-4 py-16">
+          <AppointmentConfirmation
+            message={`${name ? `Thank you, ${name}! ` : "Thank you! "} Your appointment has been scheduled successfully. ${appointmentDetails}. Kindly Click on "Add to Calendar" to Confirm Appointment Date and Time`}
+            calendarLink={googleCalendarLink || undefined}
+            mapsLink={googleMapsLink || undefined}
+          />
+        </div>
+      </PageLayout>
+    )
+  }
+
+  // Otherwise, show the standard thank you message
   return (
     <PageLayout>
       <div className="container mx-auto px-4 py-16">
@@ -50,38 +93,8 @@ export function ThankYouPageContent() {
           <h1 className="text-3xl md:text-4xl font-bold mb-6 text-black">Thank You!</h1>
 
           <p className="text-lg mb-8 text-black">
-            {isAppointment
-              ? "Your appointment has been scheduled. We look forward to seeing you at our location!"
-              : "Your message has been received. We appreciate your interest and will get back to you shortly."}
+            Your message has been received. We appreciate your interest and will get back to you shortly.
           </p>
-
-          {isAppointment && (
-            <div className="flex flex-col md:flex-row gap-4 justify-center mt-6 mb-8">
-              {googleMapsLink && (
-                <Link
-                  href={googleMapsLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center bg-black text-white py-3 px-6 rounded-full hover:bg-gray-800 transition-colors"
-                >
-                  <MapPin className="mr-2 h-5 w-5" />
-                  View Our Location
-                </Link>
-              )}
-
-              {googleCalendarLink && (
-                <Link
-                  href={googleCalendarLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center bg-black text-white py-3 px-6 rounded-full hover:bg-gray-800 transition-colors"
-                >
-                  <Calendar className="mr-2 h-5 w-5" />
-                  Add to Google Calendar
-                </Link>
-              )}
-            </div>
-          )}
 
           <Link
             href="/"
@@ -93,4 +106,4 @@ export function ThankYouPageContent() {
       </div>
     </PageLayout>
   )
-} 
+}

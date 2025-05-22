@@ -587,6 +587,57 @@ input[type="time"] {
   -moz-appearance: none;
 }
 
+* Phone input styles *
+/* .phone-input-container {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+.country-code-button {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.country-code-dropdown {
+  position: absolute;
+  z-index: 50;
+  margin-top: 0.25rem;
+  width: 15rem;
+  max-height: 15rem;
+  overflow-y: auto;
+  background-color: white;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.country-option {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.country-option:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.country-flag {
+  margin-right: 0.5rem;
+}
+
+.country-name {
+  margin-right: 0.5rem;
+}
+
+.country-code {
+  color: rgba(0, 0, 0, 0.5);
+} */
+
 /* Add these styles to make the date and time pickers more visible on mobile */
 @media (max-width: 768px) {
   .date-input-custom,
