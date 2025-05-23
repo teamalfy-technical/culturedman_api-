@@ -98,10 +98,10 @@ export function Categories() {
               ))}
 
               <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-                <div className="bg-[rgba(0,0,0,0.7)] text-white px-12 py-4 mb-4">
-                  <h3 className="text-2xl font-bold text-center">{category.title}</h3>
-                </div>
-                <Link href={category.path} className="text-white hover:underline text-sm">
+                <Link href={category.path} className="bg-[rgba(0,0,0,0.7)] text-white px-12 py-4 mb-4 hover:bg-black text-sm">
+                    <h3 className="text-2xl font-bold text-center">{category.title}</h3>
+                </Link>
+                <Link href={category.path} className="text-white hover:underline hover:text-black text-sm">
                   Discover More
                 </Link>
               </div>
