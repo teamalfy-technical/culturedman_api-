@@ -92,7 +92,7 @@ export default function ScheduleAppointmentPage() {
     const location = encodeURIComponent("The Cultured Man")
 
     // Generate Google Calendar link with location
-    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${eventName}&details=${eventDetails}&location=${location}&dates=${startDateFormatted}/${endDateFormatted}&add=${encodeURIComponent(data.email)}&add=fredawumeyfafa@gmail.com&ctz=local&crm=AVAILABLE&trp=true`
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${eventName}&details=${eventDetails}&location=${location}&dates=${startDateFormatted}/${endDateFormatted}&add=${encodeURIComponent(data.email)}&add=Info.theculturedman@gmail.com&ctz=local&crm=AVAILABLE&trp=true`
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -136,7 +136,7 @@ export default function ScheduleAppointmentPage() {
 
     // Update the form's action with the redirect URL including all parameters
     const form = e.target as HTMLFormElement
-    form.action = `https://formsubmit.co/2cd8fe56d03bf1dc7c4460dfcde9a017`
+    form.action = `https://formsubmit.co/Info.theculturedman@gmail.com`
 
     // Add the redirect URL with parameters
     const redirectUrl = `${window.location.origin}/pages/thank-you?firstName=${encodeURIComponent(formData.firstName)}&lastName=${encodeURIComponent(formData.lastName)}&appointmentDetails=${appointmentDetails}&googleMapsLink=${encodeURIComponent(mapsLink)}&googleCalendarLink=${encodeURIComponent(calendarLink)}`
@@ -184,7 +184,7 @@ export default function ScheduleAppointmentPage() {
         {/* Appointment Form */}
         <div className="max-w-2xl mx-auto">
           <form
-            action="https://formsubmit.co/2cd8fe56d03bf1dc7c4460dfcde9a017"
+            action="https://formsubmit.co/Info.theculturedman@gmail.com"
             method="POST"
             className="space-y-8"
             onSubmit={handleSubmit}
@@ -198,7 +198,7 @@ export default function ScheduleAppointmentPage() {
               name="_autoresponse"
               value="Thank you for scheduling an appointment with The Cultured Man! We'll be in touch shortly to confirm your appointment details."
             />
-            <input type="hidden" name="_cc" value="fredawumeyfafa@gmail.com" />
+            <input type="hidden" name="_cc" value="Info.theculturedman@gmail.com" />
             {/* _next will be set dynamically in the handleSubmit function */}
 
             {/* First Name */}

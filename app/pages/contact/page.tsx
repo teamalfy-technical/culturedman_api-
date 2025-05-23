@@ -73,7 +73,7 @@ export default function ContactPage() {
             {/* Contact form */}
             <div>
               <form
-                action="https://formsubmit.co/2cd8fe56d03bf1dc7c4460dfcde9a017"
+                action="https://formsubmit.co/Info.theculturedman@gmail.com"
                 method="POST"
                 className="space-y-4 text-black"
                 onSubmit={handleContactSubmit}
@@ -157,7 +157,7 @@ export default function ContactPage() {
                 Become a part of the cultured man of the near future, leave us your email and we will be in touch..
               </p>
               <form
-                action="https://formsubmit.co/2cd8fe56d03bf1dc7c4460dfcde9a017"
+                action="https://formsubmit.co/Info.theculturedman@gmail.com"
                 method="POST"
                 className="flex flex-col md:flex-row max-w-xl mx-auto mb-4"
                 onSubmit={handleNewsletterSubmit}
