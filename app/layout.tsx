@@ -4,15 +4,12 @@ import "./globals.css"
 import "./phone-input.css" // Import the phone input styles
 import { ThemeProvider } from "@/components/theme-provider"
 
-// No need to import Google fonts since we're using Times New Roman
-// which is a system font
-
 export const metadata: Metadata = {
   title: "Bespoke Tailoring | Redefining Elegance",
   description: "Experience the art of bespoke tailoring with our premium collection of handcrafted suits.",
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/images/favicon-32x32.png", sizes: "32x32" },
       { url: "/icon.png", sizes: "192x192" },
     ],
     apple: { url: "/apple-icon.png", sizes: "180x180" },
