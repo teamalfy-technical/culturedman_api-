@@ -122,6 +122,9 @@ export function Header() {
             <Link href="/pages/contact" className="text-white hover:text-white/80 text-sm">
               Contact Us
             </Link>
+            <Link href="/pages/schedule-appointment" className="text-white hover:text-white/80 text-sm">
+              Book Us
+            </Link>
           </nav>
 
           {/* Desktop Logo - Show on non-homepage */}
@@ -257,6 +260,13 @@ export function Header() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 About Us
+              </Link>
+              <Link
+                href="/pages/schedule-appointment"
+                className="text-white hover:text-white/80 text-sm py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Book Appointment
               </Link>
               <Link
                 href="/pages/contact"
