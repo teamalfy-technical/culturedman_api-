@@ -56,7 +56,7 @@ export default function BridalPage() {
               </div>
               <Link
                 href={`/pages/categories/bridal/${item.id}`}
-                className="bg-[#1a1a1a] text-white py-3 px-6 rounded-full flex items-center justify-center"
+                className="bg-black hover:bg-neutral-900 text-white py-3 px-6 rounded-full flex items-center justify-center"
               >
                 <span className="mr-2">DETAILS</span>
                 <span className="text-lg">→</span>

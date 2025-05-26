@@ -409,7 +409,7 @@ export default function ScheduleAppointmentPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-black text-white py-3 px-8 rounded-full flex items-center justify-center disabled:opacity-70 w-full max-w-xs"
+                className="bg-black hover:bg-neutral-900 text-white py-3 px-8 rounded-full flex items-center justify-center disabled:opacity-70 w-full max-w-xs"
               >
                 {isSubmitting ? (
                   <>

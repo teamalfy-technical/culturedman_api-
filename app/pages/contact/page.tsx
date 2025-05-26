@@ -89,7 +89,7 @@ export default function ContactPage() {
                     type="text"
                     name="name"
                     placeholder="Your Name"
-                    className="w-full p-4 text-black bg-gray-100 border-none rounded-md"
+                    className="w-full p-4 text-black border-2 border-gray-400 focus:border-gray-600 bg-gray-100 rounded-md"
                     required
                     // disabled={isContactSubmitting}
                   />
@@ -99,7 +99,7 @@ export default function ContactPage() {
                     type="email"
                     name="email"
                     placeholder="Your Email"
-                    className="w-full p-4 text-black bg-gray-100 border-none rounded-md"
+                    className="w-full p-4 text-black bg-gray-100 border-2 border-gray-400 focus:border-gray-600 rounded-md"
                     required
                     // disabled={isContactSubmitting}
                   />
@@ -109,7 +109,7 @@ export default function ContactPage() {
                     name="message"
                     placeholder="Your Message"
                     rows={5}
-                    className="w-full p-4 text-black bg-gray-100 border-none rounded-md"
+                    className="w-full p-4 text-black bg-gray-100 border-2 border-gray-400 focus:border-gray-600 rounded-md"
                     required
                     // disabled={isContactSubmitting}
                   ></textarea>
@@ -117,7 +117,7 @@ export default function ContactPage() {
                 <div className="flex items-center justify-center text-center">
                   <button
                     type="submit"
-                    className="bg-black group text-white w-80 py-3 px-6 rounded-full flex items-center justify-center text-center hover:bg-gray-900"
+                    className="bg-black hover:bg-neutral-900 group text-white w-80 py-3 px-6 rounded-full flex items-center justify-center text-cente"
                     onClick={()=> isContactSubmitting}
                     disabled={isContactSubmitting}
                   >
@@ -159,7 +159,7 @@ export default function ContactPage() {
               <form
                 action="https://formsubmit.co/Info.theculturedman@gmail.com"
                 method="POST"
-                className="flex flex-col md:flex-row max-w-xl mx-auto mb-4"
+                className="flex flex-col md:flex-row max-w-xl mx-auto md:mb-1 mb-4"
                 onSubmit={handleNewsletterSubmit}
               >
                 {/* FormSubmit configuration */}
@@ -172,14 +172,15 @@ export default function ContactPage() {
                   type="email"
                   name="email"
                   placeholder="Email"
-                  className="flex-grow p-4 bg-black text-white border-none rounded-l-md mb-2 md:mb-0"
+                  className="flex-grow p-4 bg-black text-white border-none rounded-md md:rounded-l-md md:rounded-r-none mb-2 md:mb-0"
                   required
                   onClick={()=> isNewsletterSubmitting}
                   // disabled={isNewsletterSubmitting}
                 />
                 <button
                   type="submit"
-                  className="bg-white text-black px-8 py-4 rounded-r-md flex items-center justify-center"
+                  className="flex items-center justify-center hover:bg-neutral-600 hover:text-white px-8 py-4 bg-white text-black border-none rounded-md md:rounded-r-md md:rounded-l-none mb-2 md:mb-0"
+                  // className="bg-white text-black px-8 py-4 rounded-md md:rounded-r-md flex items-center justify-center"
                   disabled={isNewsletterSubmitting}
                 >
                   {isNewsletterSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : "Subscribe"}

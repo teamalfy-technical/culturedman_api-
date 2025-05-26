@@ -109,7 +109,7 @@ export default function SearchPage() {
     <PageLayout>
       <div className="container mx-auto px-4 py-12">
         <div className="flex items-center mb-6">
-          <h1 className="text-2xl font-bold text-black">Search Results for: "{query}"</h1>
+          <h1 className="text-2xl font-bold text-black text-center">Search Results for: "{query}"</h1>
           {loading && (
             <div className="ml-4">
               <Loader2 className="h-5 w-5 animate-spin text-black" />
@@ -175,19 +175,19 @@ export default function SearchPage() {
               <div className="text-center py-12">
                 <p className="text-lg mb-4 text-black">No products found matching your search.</p>
                 <p className="text-black">Try using different keywords or browse our categories.</p>
-                <div className="mt-8 flex justify-center gap-4">
-                  <Link href="/pages/categories/bridal" className="bg-black text-white px-4 py-2 rounded-full text-sm">
+                <div className="mt-8 flex md:flex-nowrap flex-wrap  justify-center gap-4">
+                  <Link href="/pages/categories/bridal" className="bg-black hover:bg-neutral-900 text-white px-4 py-2 rounded-full text-sm mb-4">
                     Bridal Collection
                   </Link>
                   <Link
                     href="/pages/categories/corporate"
-                    className="bg-black text-white px-4 py-2 rounded-full text-sm"
-                  >
+                    className="bg-black hover:bg-neutral-900 text-white px-4 py-2 rounded-full text-sm mb-4" 
+                  >a
                     Corporate Collection
                   </Link>
                   <Link
                     href="/pages/categories/red-carpet"
-                    className="bg-black text-white px-4 py-2 rounded-full text-sm"
+                    className="bg-black hover:bg-neutral-900 text-white px-4 py-2 rounded-full text-sm mb-4"
                   >
                     Red Carpet Collection
                   </Link>
