@@ -1,78 +1,96 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { PageLayout } from "@/components/page-layout"
-// import { OutfitCard } from "@/components/outfit-card"
 import { ArrowLeft } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
 
-// Sample outfit data
-// const outfits = [
-//   {
-//     id: "navy-suit",
-//     image: "/images/corporate/outfit-navy-suit.png",
-//     alt: "Man in navy blue suit",
-//   },
-//   {
-//     id: "blue-pattern",
-//     image: "/images/corporate/corporate/outfit-blue-pattern.png",
-//     alt: "Man in blue patterned tuxedo with bow tie",
-//   },
-//   {
-//     id: "white-blazer",
-//     image: "/images/corporate/corporate/outfit-white-blazer.png",
-//     alt: "Man in white blazer with black pants",
-//   },
-//   {
-//     id: "beige-blazer",
-//     image: "/images/corporate/corporate/outfit-beige-blazer.png",
-//     alt: "Man in beige blazer with orange shirt",
-//   },
-//   {
-//     id: "dark-suit",
-//     image: "/images/corporate/outfit-dark-suit.png",
-//     alt: "Man in dark suit with red tie",
-//   },
-//   {
-//     id: "gold-suit",
-//     image: "/images/corporate/outfit-gold-suit.png",
-//     alt: "Man in gold suit with patterned tie",
-//   },
-// ]
+type Card = {
+  id: string
+  image: string
+  alt: string
+  path?: string
+}
 
-const corporateCollection = [
+const corporateCollection: Card[] = [
   {
     id: "single-breasted",
     image: "/images/corporate/single-breasted/single-breasted-1.png",
     alt: "Man in burgundy suit",
     path: "/pages/categories/corporate/single-breasted",
-    title: "Single Breasted",
   },
   {
     id: "double-breasted",
     image: "/images/corporate/double-breasted/double-breasted-1.png",
     alt: "Man in navy blue suit",
     path: "/pages/categories/corporate/double-breasted",
-    title: "Double Breasted",
   },
   {
     id: "overcoat",
     image: "/images/corporate/overcoat/overcoat-1.png",
     alt: "Man in gray pinstripe suit",
     path: "/pages/categories/corporate/overcoat",
-    title: "Overcoats",
   },
   {
     id: "safari-suit",
     image: "/images/corporate/safari-suit/safari-suit-1.png",
     alt: "Man in black suit with tie",
     path: "/pages/categories/corporate/safari-suit",
-    title: "Safari Suits",
   },
 ]
 
+const redCarpetCollection: Card[] = [
+  { id: "red-carpet-1", image: "/images/red-carpet/red-carpet-1.png", alt: "Man in black tuxedo with sunglasses" },
+  { id: "red-carpet-2", image: "/images/red-carpet/red-carpet-2.png", alt: "Man in velvet dinner jacket" },
+  { id: "red-carpet-3", image: "/images/red-carpet/red-carpet-3.png", alt: "Man in white dinner jacket" },
+  { id: "red-carpet-4", image: "/images/red-carpet/red-carpet-4.png", alt: "Man in patterned suit" },
+  { id: "red-carpet-5", image: "/images/red-carpet/red-carpet-5.png", alt: "Man in gold suit" },
+  { id: "red-carpet-6", image: "/images/red-carpet/red-carpet-6.png", alt: "Man in silver tuxedo" },
+]
+
+const bridalCollection: Card[] = [
+  { id: "bridal-1", image: "/images/bridal/bridal-1.png", alt: "Man in white tuxedo with black bow tie" },
+  { id: "bridal-2", image: "/images/bridal/bridal-2.png", alt: "Group of men in black tuxedos" },
+  { id: "bridal-3", image: "/images/bridal/bridal-3.png", alt: "Man in white dinner jacket" },
+  { id: "bridal-4", image: "/images/bridal/bridal-4.png", alt: "Group of groomsmen in matching suits" },
+  { id: "bridal-5", image: "/images/bridal/bridal-5.png", alt: "Man in white jacket at wedding" },
+  { id: "bridal-6", image: "/images/bridal/bridal-6.png", alt: "Group photo with men in formal wear" },
+]
+
 export default function AIRecommendationsPage() {
+  const [occasion, setOccasion] = useState("")
+  const [cards, setCards] = useState<Card[]>([])
+  const [collectionType, setCollectionType] = useState<"corporate" | "red-carpet" | "bridal">("corporate")
+
+  useEffect(() => {
+    const raw = localStorage.getItem("stylistFormData")
+    if (raw) {
+      try {
+        const parsed = JSON.parse(raw)
+        const userOccasion: string = parsed?.occasion ?? ""
+        setOccasion(userOccasion)
+
+        if (userOccasion === "Formal") {
+          setCollectionType("corporate")
+          setCards(corporateCollection)
+        } else if (userOccasion === "Red Carpet") {
+          setCollectionType("red-carpet")
+          setCards(redCarpetCollection)
+        } else if (userOccasion === "Wedding") {
+          setCollectionType("bridal")
+          setCards(bridalCollection)
+        } else {
+          setCollectionType("corporate")
+          setCards(corporateCollection)
+        }
+      } catch (err) {
+        console.error("❌ Failed to parse stylistFormData:", err)
+      }
+    }
+  }, [])
+
   return (
     <PageLayout>
       <div className="container mx-auto px-4 py-8">
@@ -84,27 +102,33 @@ export default function AIRecommendationsPage() {
           </Link>
           <h1 className="text-3xl text-black md:text-4xl font-bold text-center flex-1">AI Recommendations</h1>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
-          {corporateCollection.map((item) => (
+
+        <h2 className="text-xl font-semibold text-black mb-4 text-center">
+          {occasion ? `Recommended for: ${occasion}` : "Corporate Recommendations"}
+        </h2>
+
+        <div className={`grid grid-cols-1 ${collectionType === "corporate" ? "md:grid-cols-4" : "md:grid-cols-3"} gap-8`}>
+          {cards.map((item) => (
             <div key={item.id} className="flex flex-col">
               <div className="relative aspect-square rounded-md overflow-hidden mb-4">
                 <Image src={item.image || "/placeholder.svg"} alt={item.alt} fill className="object-cover" />
               </div>
               <Link
-                href={item.path}
-                className="bg-black text-white py-3 px-6 rounded-full flex items-center justify-center"
+                href={
+                  item.path
+                    ? item.path
+                    : `/pages/categories/${collectionType}/${item.id}`
+                }
+                className={`py-3 px-6 rounded-full flex items-center justify-center ${
+                  collectionType === "red-carpet" ? "bg-[#1a1a1a] text-white" : "bg-black text-white"
+                }`}
               >
-                <span className="mr-2 uppercase">{item.title}</span>
+                <span className="mr-2 uppercase">{collectionType === "corporate" ? item.id.replace("-", " ") : "Details"}</span>
                 <span className="text-lg">→</span>
               </Link>
             </div>
           ))}
         </div>
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 mb-16">
-          {outfits.map((outfit, index) => (
-            <OutfitCard key={outfit.id} image={outfit.image} alt={outfit.alt} id={outfit.id} delay={index * 0.1} />
-          ))}
-        </div> */}
       </div>
     </PageLayout>
   )

@@ -182,8 +182,7 @@ export default function SearchPage() {
                   <Link
                     href="/pages/categories/corporate"
                     className="bg-black hover:bg-neutral-900 text-white px-4 py-2 rounded-full text-sm mb-4" 
-                  >a
-                    Corporate Collection
+                  >Corporate Collection
                   </Link>
                   <Link
                     href="/pages/categories/red-carpet"

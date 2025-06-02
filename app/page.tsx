@@ -3,7 +3,7 @@ import { HeroSection } from "@/components/hero-section"
 import { CeremonialSuits } from "@/components/ceremonial-suits"
 // import { FeaturedCollection } from "@/components/featured-collection"
 import { Categories } from "@/components/categories"
-import { AiStylist } from "@/components/ai-stylist"
+import { StylistSection } from "@/components/stylist-section"
 import { FashionShowcase } from "@/components/fashion-showcase"
 import { Footer } from "@/components/footer"
 // import { NavigationArrows } from "@/components/navigation-arrows"
@@ -30,7 +30,7 @@ export default function Home() {
         <Categories />
 
         {/* AI stylist */}
-        <AiStylist />
+        <StylistSection />
 
         {/* Fashion showcase */}
         <FashionShowcase />

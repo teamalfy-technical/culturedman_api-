@@ -80,9 +80,7 @@ export function HeroSection() {
               Redefining Elegance. The Art Of Bespoke Tailoring
             </h1>
             <p className="text-white/90 text-xl mb-10">
-              Elevate Your Wardrobe With Our Fashion Finds. Discover Your
-              <br className="hidden md:block" />
-              Signature Style.
+              Elevate Your Wardrobe With Our Fashion Finds. Discover Your <br className="hidden md:block" /> Signature Style.
             </p>
             <div className="flex-row space-y-4 mb-8">
               <Link href="/pages/ai-stylist">

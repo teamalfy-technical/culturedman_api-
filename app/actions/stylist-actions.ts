@@ -79,9 +79,6 @@ export async function submitStylistForm(formData: StylistFormData): Promise<Styl
       }
     }
 
-    // Simulate API delay
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-
     // Get recommendations based on occasion and fit
     let recommendations: RecommendationItem[] = []
 
@@ -90,6 +87,42 @@ export async function submitStylistForm(formData: StylistFormData): Promise<Styl
     } else {
       // Fallback to default recommendations
       recommendations = defaultRecommendations
+    }
+
+    // Send data to n8n webhook
+    try {
+      const webhookUrl = process.env.N8N_WEBHOOK_URL
+
+      if (!webhookUrl) {
+        console.error("N8N_WEBHOOK_URL environment variable is not set")
+        // Continue with the flow even if webhook URL is not set
+      } else {
+        // Prepare data for n8n
+        const n8nData = {
+          ...formData,
+          timestamp: new Date().toISOString(),
+          recommendationCount: recommendations.length,
+          recommendationIds: recommendations.map((rec) => rec.id),
+        }
+
+        // Send data to n8n webhook
+        const response = await fetch(webhookUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.N8N_API_KEY || ""}`, // Include API key if available
+          },
+          body: JSON.stringify(n8nData),
+        })
+
+        if (!response.ok) {
+          console.error(`Error sending data to n8n: ${response.status} ${response.statusText}`)
+          // Continue with the flow even if webhook call fails
+        }
+      }
+    } catch (webhookError) {
+      console.error("Error sending data to n8n webhook:", webhookError)
+      // Continue with the flow even if webhook call fails
     }
 
     // Revalidate the path to ensure fresh data
