@@ -94,19 +94,19 @@ export function AiStylist() {
           </div>
 
           <form onSubmit={handleSubmit} className="max-w-2xl mx-auto text-left space-y-6 text-black">
-            <input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} className="w-full px-4 py-2 border-b border-black bg-white text-black" required />
-            <input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} className="w-full px-4 py-2 border-b border-black bg-white text-black" required />
-            <input type="text" name="height" placeholder="Height (cm)" value={formData.height} onChange={handleChange} className="w-full px-4 py-2 border-b border-black bg-white text-black" required />
-            <input type="text" name="weight" placeholder="Weight (kg)" value={formData.weight} onChange={handleChange} className="w-full px-4 py-2 border-b border-black bg-white text-black" required />
+            <input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} className="w-full px-4 py-4 border-b border-black bg-white text-black placeholder:text-black" required />
+            <input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} className="w-full px-4 py-4 border-b border-black bg-white text-black placeholder:text-black" required />
+            <input type="text" name="height" placeholder="Height (cm)" value={formData.height} onChange={handleChange} className="w-full px-4 py-4 border-b border-black bg-white text-black placeholder:text-black" required />
+            <input type="text" name="weight" placeholder="Weight (kg)" value={formData.weight} onChange={handleChange} className="w-full px-4 py-4 border-b border-black bg-white text-black placeholder:text-black" required />
 
-            <select name="preferredFit" value={formData.preferredFit} onChange={handleChange} className="w-full px-4 py-2 border-b border-black bg-white text-black" required>
+            <select name="preferredFit" value={formData.preferredFit} onChange={handleChange} className="w-full px-4 py-4 border-b border-black bg-white text-black placeholder:text-black" required>
               <option value="">Select Preferred Fit</option>
               <option value="Slim Fit">Slim Fit</option>
               <option value="Regular Fit">Regular Fit</option>
               <option value="Loose Fit">Loose Fit</option>
             </select>
 
-            <select name="occasion" value={formData.occasion} onChange={handleChange} className="w-full px-4 py-2 border-b border-black bg-white text-black" required>
+            <select name="occasion" value={formData.occasion} onChange={handleChange} className="w-full px-4 py-4 border-b border-black bg-white text-black placeholder:text-black" required>
               <option value="">Select Occasion</option>
               <option value="Corporate">Corporate</option>
               <option value="Red Carpet">Red Carpet</option>
@@ -114,9 +114,26 @@ export function AiStylist() {
             </select>
 
             <div className="flex items-center text-center justify-center">
-              <button type="submit" disabled={loading} className="bg-black text-white px-6 py-3 flex items-center justify-center rounded-full">
-                {loading ? <><Loader2 className="h-4 w-4 mr-2 animate-spin" /> Submitting...</> : "Get Recommendations"}
+              <button
+                type="submit"
+                disabled={loading}
+                className="group bg-black text-white px-6 py-3 flex items-center justify-center rounded-full hover:bg-neutral-900"
+              >
+                {loading ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" /> Analyzing...
+                  </>
+                ) : (
+                  <>
+                    Get Recommendations
+                    <span className="arrow-line ml-2 transition-transform duration-200 ease-in-out group-hover:translate-x-1"></span>
+                  </>
+                )}
               </button>
+
+              {/* <button type="submit" disabled={loading} className="bg-black text-white px-6 py-3 flex items-center justify-center rounded-full">
+                {loading ? <><Loader2 className="h-4 w-4 mr-2 animate-spin" /> Submitting...</> : "Get Recommendations"}
+              </button> */}
             </div>
 
             {error && <p className="text-red-600 text-sm mt-2">{error}</p>}

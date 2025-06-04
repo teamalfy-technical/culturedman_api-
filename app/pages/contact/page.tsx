@@ -75,7 +75,7 @@ export default function ContactPage() {
               <form
                 action="https://formsubmit.co/041056f4808a774878c82b5e3bd183fc"
                 method="POST"
-                className="space-y-4 text-black"
+                className="space-y-4 text-black placeholder:text-black"
                 onSubmit={handleContactSubmit}
               >
                 {/* FormSubmit configuration */}
@@ -89,7 +89,7 @@ export default function ContactPage() {
                     type="text"
                     name="name"
                     placeholder="Your Name"
-                    className="w-full p-4 text-black border-2 border-gray-400 focus:border-gray-600 bg-gray-100 rounded-md"
+                    className="w-full p-4 text-black border-2 border-gray-400 focus:border-gray-600 bg-gray-100 rounded-md placeholder:text-black"
                     required
                     // disabled={isContactSubmitting}
                   />
@@ -99,7 +99,7 @@ export default function ContactPage() {
                     type="email"
                     name="email"
                     placeholder="Your Email"
-                    className="w-full p-4 text-black bg-gray-100 border-2 border-gray-400 focus:border-gray-600 rounded-md"
+                    className="w-full p-4 text-black bg-gray-100 border-2 border-gray-400 focus:border-gray-600 rounded-md placeholder:text-black"
                     required
                     // disabled={isContactSubmitting}
                   />
@@ -109,7 +109,7 @@ export default function ContactPage() {
                     name="message"
                     placeholder="Your Message"
                     rows={5}
-                    className="w-full p-4 text-black bg-gray-100 border-2 border-gray-400 focus:border-gray-600 rounded-md"
+                    className="w-full p-4 text-black bg-gray-100 border-2 border-gray-400 focus:border-gray-600 rounded-md placeholder:text-black"
                     required
                     // disabled={isContactSubmitting}
                   ></textarea>
