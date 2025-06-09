@@ -43,15 +43,6 @@ export function Footer() {
                 <FaTiktok className="h-5 w-5 text-white hover:text-white/80" />
                 <span className="sr-only">Tiktok</span>
               </Link>
-              {/* <a
-                href="https://x.com/theculturedman_"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-white/80"
-              >
-                <FaXTwitter className="h-5 w-5 text-white hover:text-white/80" />
-                <span className="sr-only">Twitter</span>
-              </a> */}
               <Link href="https://x.com/theculturedman_" className="text-white hover:text-white/80">
                 <FaXTwitter className="h-5 w-5 text-white hover:text-white/80" />
                 <span className="sr-only">Twitter</span>
